@@ -98,6 +98,7 @@
     <allow-navigation href="http://localhost:8100" />
     <allow-navigation href="http://jimsbill.ca/api" />
     <allow-navigation href="http://192.168.0.14:8101" />
+    <allow-navigation href="http://192.168.0.10:8101" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="^4.5.5" />
 </widget>

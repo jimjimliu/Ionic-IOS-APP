@@ -65,7 +65,7 @@ export class InformationPage {
             this.app.getRootNav().push(), will hide tabs in child component
             xxx.setRoot(), will hide tabs and set root page from top level;
             */
-           this.app.getRootNav().setRoot(UserAuthPage);
+           this.app.getRootNav().setRoot(LoginPage);
           }
         }
       ]

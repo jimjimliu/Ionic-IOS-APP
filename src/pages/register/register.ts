@@ -1,7 +1,9 @@
 import { Component } from '@angular/core'
 import axios from 'axios'
-import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular'
+import { AlertController, IonicPage, NavController, NavParams, App } from 'ionic-angular'
 import { LoginPage } from '../login/login'
+import { AuthCodePage } from '../auth-code/auth-code';
+import { UserAuthPage } from '../user-auth/user-auth';
 
 @IonicPage()
 @Component({
@@ -10,7 +12,8 @@ import { LoginPage } from '../login/login'
 })
 export class RegisterPage {
 
-  constructor (public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor (public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
+    public app: App) {
   }
 
   email: string = ''
@@ -28,6 +31,7 @@ export class RegisterPage {
         password: this.password
       })
         .then(res => {
+          //注册失败
           if (res.data.message) {
             this.alertCtrl.create({
               title: 'Reigster failed',
@@ -36,7 +40,8 @@ export class RegisterPage {
             }).present()
             return
           }
-
+          //注册成功
+          localStorage.setItem("user_email", this.email);
           this.alertCtrl.create({
             title: 'Success',
             message: 'Press ok and login',
@@ -44,11 +49,12 @@ export class RegisterPage {
               {
                 text: 'OK',
                 handler: () => {
-                  this.navCtrl.setRoot(LoginPage);
+                  // this.app.getRootNav().push(UserAuthPage);
                 }
               }
             ]
           }).present()
+          this.app.getRootNav().push(UserAuthPage);
         }).catch(error => {
           /* 另外，在app.module.ts 中有拦截器处理异常。 */
           console.log(error);

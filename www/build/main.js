@@ -1,13 +1,13 @@
 webpackJsonp([12],{
 
-/***/ 109:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthCodePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -55,7 +55,9 @@ var AuthCodePage = /** @class */ (function () {
         });
         loader.present();
         /* 后端验证 */
-        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post("/auth_sms_code.php", { auth_code: this.auth_code })
+        var email = localStorage.getItem("user_email");
+        console.log(email);
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post("/auth_sms_code.php", { auth_code: this.auth_code, user_email: email })
             .then(function (res) {
             /* 验证成功 */
             if (!res.data.message) {
@@ -91,7 +93,7 @@ var AuthCodePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 110:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,7 +102,7 @@ var AuthCodePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,10 +117,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage(navCtrl, navParams, alertCtrl) {
+    function RegisterPage(navCtrl, navParams, alertCtrl, app) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
+        this.app = app;
         this.email = '';
         this.password = '';
         this.rePassword = '';
@@ -134,6 +137,7 @@ var RegisterPage = /** @class */ (function () {
                 password: _this.password
             })
                 .then(function (res) {
+                //注册失败
                 if (res.data.message) {
                     _this.alertCtrl.create({
                         title: 'Reigster failed',
@@ -142,6 +146,8 @@ var RegisterPage = /** @class */ (function () {
                     }).present();
                     return;
                 }
+                //注册成功
+                localStorage.setItem("user_email", _this.email);
                 _this.alertCtrl.create({
                     title: 'Success',
                     message: 'Press ok and login',
@@ -149,11 +155,12 @@ var RegisterPage = /** @class */ (function () {
                         {
                             text: 'OK',
                             handler: function () {
-                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                                // this.app.getRootNav().push(UserAuthPage);
                             }
                         }
                     ]
                 }).present();
+                _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__["a" /* UserAuthPage */]);
             }).catch(function (error) {
                 /* 另外，在app.module.ts 中有拦截器处理异常。 */
                 console.log(error);
@@ -194,7 +201,8 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-register',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/register/register.html"*/'\n<ion-header class="header">\n\n  <ion-navbar color="milk">\n    <ion-title></ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding class="transparent-header">\n\n    <div padding class="content">\n      <ion-row>\n        <ion-col>\n          <img class="logo" src="assets/imgs/logo.gif"/>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-list inset class="no-border">\n            <ion-item class="email">\n              <!-- <ion-label>Username</ion-label> -->\n              <ion-input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="email" placeholder="Email"></ion-input>\n            </ion-item>\n            <ion-item class="email">\n              <!-- <ion-label>Username</ion-label> -->\n              <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>\n            </ion-item>\n            <ion-item>\n              <!-- <ion-label>Password</ion-label> -->\n              <ion-input type="password" [(ngModel)]="password" placeholder="password"></ion-input> \n            </ion-item>\n            <ion-item>\n              <!-- <ion-label>Password</ion-label> -->\n              <ion-input type="password" [(ngModel)]="rePassword" placeholder="password"></ion-input> \n            </ion-item>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <button ion-button class="login-button" (click)="signUp()">SignUp</button>\n        </ion-col>\n      </ion-row>\n    </div>\n  </ion-content>\n\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"]])
     ], RegisterPage);
     return RegisterPage;
 }());
@@ -203,6 +211,166 @@ function isEmpty(val) {
     return val.trim() === '';
 }
 //# sourceMappingURL=register.js.map
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserAuthPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__ = __webpack_require__(108);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var UserAuthPage = /** @class */ (function () {
+    function UserAuthPage(navCtrl, loadingCtrl, alertCtrl, menuCtrl, modalCtrl, view) {
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.menuCtrl = menuCtrl;
+        this.modalCtrl = modalCtrl;
+        this.view = view;
+        this.phone_number = '';
+    }
+    UserAuthPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UserAuthPage');
+    };
+    //disable swipe gesture in the page;
+    UserAuthPage.prototype.ionViewDidEnter = function () {
+        this.menuCtrl.swipeEnable(false);
+    };
+    /*
+    enable swipe gesture when leave this page;
+    otherwise, other pages' swipe gesture will be disable too;
+    */
+    UserAuthPage.prototype.ionViewWillLeave = function () {
+        this.menuCtrl.swipeEnable(true);
+    };
+    /* ==============================================================
+    用户输入用户名之后post到后端API处理，并且发送验证码到用户手机；
+    发送成功后返回验证码；
+    跳转到输入验证码页面；
+    ============================================================== */
+    UserAuthPage.prototype.send_auth_code = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var loader;
+            return __generator(this, function (_a) {
+                /* 监控 input field */
+                if (this.phone_number === '') {
+                    this.alertCtrl.create({
+                        buttons: ['ok'],
+                        title: 'Please enter your phone number'
+                    }).present();
+                    return [2 /*return*/];
+                }
+                loader = this.loadingCtrl.create({
+                    spinner: 'hide',
+                    content: '<div class="loader loader--snake"></div>',
+                    cssClass: 'loader'
+                });
+                loader.present();
+                /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/send-sms.php', { phone_number: this.phone_number, country_code: '+1' })
+                    .then(function (res) {
+                    loader.dismiss();
+                    /* 如果message为空，说明验证码发送成功 */
+                    if (!res.data.message) {
+                        /* 将验证码储存到local数据库 */
+                        localStorage.setItem('auth_code', res.data.data);
+                        /* 跳转页面 */
+                        //this.navCtrl.setRoot(AuthCodePage);
+                        var page = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__["a" /* AuthCodePage */]);
+                        page.present();
+                    }
+                    else {
+                        _this.alertCtrl.create({
+                            title: 'FAIL',
+                            subTitle: res.data.message,
+                            buttons: ['CLOSE']
+                        }).present();
+                    }
+                }).catch(function (error) {
+                    /* 另外，在app.module.ts 中有拦截器处理异常。 */
+                    console.log(error);
+                    loader.dismiss();
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    /**==============================================================
+     *
+     * @param phone_number: (String) 用户手机号
+     * @return: 添加国家区号
+     * 给用户手机号添加区号，暂时这样写。之后在前端让用户选择国家区号；
+    ============================================================== */
+    UserAuthPage.prototype.append_country_code = function (phone_number) {
+        return "+1" + phone_number;
+    };
+    UserAuthPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-user-auth',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/user-auth/user-auth.html"*/'<ion-content padding class="transparent-header">\n  \n  \n  <div padding class="content">\n    <ion-row>\n      <ion-col>\n        <!-- <img class="logo" src="assets/imgs/logo.gif"/> -->\n      </ion-col>\n    </ion-row>\n    \n    <ion-row>\n      <ion-col>\n        <ion-list inset class="no-border">\n          <ion-item class="user_name">\n            <!-- <ion-label>Username</ion-label> -->\n            <ion-input type="text" [(ngModel)]="phone_number" placeholder="Phone Number"></ion-input>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <button ion-button class="login-button" (click)="send_auth_code()">Send Verification Code</button>\n      </ion-col>\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/user-auth/user-auth.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]])
+    ], UserAuthPage);
+    return UserAuthPage;
+}());
+
+//# sourceMappingURL=user-auth.js.map
 
 /***/ }),
 
@@ -215,7 +383,7 @@ function isEmpty(val) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -280,7 +448,7 @@ var InformationPage = /** @class */ (function () {
                         this.app.getRootNav().push(), will hide tabs in child component
                         xxx.setRoot(), will hide tabs and set root page from top level;
                         */
-                        _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__["a" /* UserAuthPage */]);
+                        _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
                     }
                 }
             ]
@@ -370,7 +538,7 @@ var NavigationPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__date_picker_date_picker__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -586,7 +754,7 @@ var BillDetailsPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DatePickerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -694,7 +862,7 @@ var DatePickerPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__main_account_main_account__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__main_account_main_account__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1189,18 +1357,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_information_information__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_list_list__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_register_register__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_register_register__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_setting_setting__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_navigation_navigation__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_chart1_chart1__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_main_account_main_account__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_main_account_main_account__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_bill_details_bill_details__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_date_picker_date_picker__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_statistics_statistics__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_user_auth_user_auth__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_auth_code_auth_code__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_storage__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_user_auth_user_auth__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_auth_code_auth_code__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_storage__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_sms__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_ion_multi_picker__ = __webpack_require__(317);
@@ -1391,8 +1559,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_splash_screen__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_setting_setting__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_user_auth_user_auth__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_setting_setting__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1414,7 +1582,7 @@ var MyApp = /** @class */ (function () {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
-        this.rootPage = localStorage.getItem('isLogin') ? __WEBPACK_IMPORTED_MODULE_4__pages_setting_setting__["a" /* SettingPage */] : __WEBPACK_IMPORTED_MODULE_5__pages_user_auth_user_auth__["a" /* UserAuthPage */];
+        this.rootPage = localStorage.getItem('isLogin') ? __WEBPACK_IMPORTED_MODULE_5__pages_setting_setting__["a" /* SettingPage */] : __WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */];
         // used for an example of ngFor and navigation
         // this.pages = [
         //   { title: 'Home', component: HomePage },
@@ -1440,7 +1608,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 52:
+/***/ 42:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1448,7 +1616,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setting_setting__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
@@ -1601,7 +1769,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information_information__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list_list__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1671,157 +1839,6 @@ var SettingPage = /** @class */ (function () {
 /***/ }),
 
 /***/ 54:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserAuthPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__ = __webpack_require__(109);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var UserAuthPage = /** @class */ (function () {
-    function UserAuthPage(navCtrl, loadingCtrl, alertCtrl, menuCtrl, modalCtrl, view) {
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.menuCtrl = menuCtrl;
-        this.modalCtrl = modalCtrl;
-        this.view = view;
-        this.user_name = '';
-    }
-    UserAuthPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UserAuthPage');
-    };
-    //disable swipe gesture in the page;
-    UserAuthPage.prototype.ionViewDidEnter = function () {
-        this.menuCtrl.swipeEnable(false);
-    };
-    /*
-    enable swipe gesture when leave this page;
-    otherwise, other pages' swipe gesture will be disable too;
-    */
-    UserAuthPage.prototype.ionViewWillLeave = function () {
-        this.menuCtrl.swipeEnable(true);
-    };
-    /* ==============================================================
-    用户输入用户名之后post到后端API处理，并且发送验证码到用户手机；
-    发送成功后返回验证码；
-    跳转到输入验证码页面；
-    ============================================================== */
-    UserAuthPage.prototype.send_auth_code = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var loader;
-            return __generator(this, function (_a) {
-                /* 监控 input field */
-                if (this.user_name === '') {
-                    this.alertCtrl.create({
-                        buttons: ['ok'],
-                        title: 'Please enter your user name'
-                    }).present();
-                    return [2 /*return*/];
-                }
-                loader = this.loadingCtrl.create({
-                    spinner: 'hide',
-                    content: '<div class="loader loader--snake"></div>',
-                    cssClass: 'loader'
-                });
-                loader.present();
-                /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/send-sms.php', { user_name: this.user_name })
-                    .then(function (res) {
-                    loader.dismiss();
-                    /* 如果message为空，说明验证码发送成功 */
-                    if (!res.data.message) {
-                        /* 将验证码储存到local数据库 */
-                        localStorage.setItem('auth_code', res.data.data);
-                        /* 跳转页面 */
-                        //this.navCtrl.setRoot(AuthCodePage);
-                        var page = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__["a" /* AuthCodePage */]);
-                        page.present();
-                    }
-                    else {
-                        _this.alertCtrl.create({
-                            title: 'FAIL',
-                            subTitle: res.data.message,
-                            buttons: ['CLOSE']
-                        }).present();
-                    }
-                }).catch(function (error) {
-                    /* 另外，在app.module.ts 中有拦截器处理异常。 */
-                    console.log(error);
-                    loader.dismiss();
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    UserAuthPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-user-auth',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/user-auth/user-auth.html"*/'<ion-content padding class="transparent-header">\n  \n  \n  <div padding class="content">\n    <ion-row>\n      <ion-col>\n        <!-- <img class="logo" src="assets/imgs/logo.gif"/> -->\n      </ion-col>\n    </ion-row>\n    \n    <ion-row>\n      <ion-col>\n        <ion-list inset class="no-border">\n          <ion-item class="user_name">\n            <!-- <ion-label>Username</ion-label> -->\n            <ion-input type="text" [(ngModel)]="user_name" placeholder="User Name"></ion-input>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <button ion-button class="login-button" (click)="send_auth_code()">Send Verification Code</button>\n      </ion-col>\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/user-auth/user-auth.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]])
-    ], UserAuthPage);
-    return UserAuthPage;
-}());
-
-//# sourceMappingURL=user-auth.js.map
-
-/***/ }),
-
-/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

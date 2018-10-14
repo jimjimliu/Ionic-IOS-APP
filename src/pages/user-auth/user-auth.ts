@@ -16,7 +16,7 @@ export class UserAuthPage {
     private menuCtrl: MenuController, public modalCtrl: ModalController, private view: ViewController) {
   }
 
-  user_name: String = '';
+  phone_number: String = '';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserAuthPage');
@@ -41,10 +41,10 @@ export class UserAuthPage {
   ============================================================== */
   async send_auth_code(){
     /* 监控 input field */
-    if (this.user_name === '') {
+    if (this.phone_number === '') {
       this.alertCtrl.create({
         buttons: ['ok'],
-        title: 'Please enter your user name'
+        title: 'Please enter your phone number'
       }).present();
       return
     }
@@ -58,7 +58,7 @@ export class UserAuthPage {
     loader.present();
 
     /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
-    axios.post('/send-sms.php', {user_name: this.user_name})
+    axios.post('/send-sms.php', {phone_number: this.phone_number, country_code:'+1'})
       .then((res) => {
         loader.dismiss();
         /* 如果message为空，说明验证码发送成功 */
@@ -83,6 +83,16 @@ export class UserAuthPage {
         console.log(error);
         loader.dismiss();
       });
+  }
+
+  /**==============================================================
+   * 
+   * @param phone_number: (String) 用户手机号
+   * @return: 添加国家区号
+   * 给用户手机号添加区号，暂时这样写。之后在前端让用户选择国家区号；
+  ============================================================== */
+  private append_country_code(phone_number){
+    return "+1"+phone_number;
   }
 
 }

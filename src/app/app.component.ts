@@ -13,7 +13,7 @@ import { UserAuthPage } from '../pages/user-auth/user-auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = localStorage.getItem('isLogin') ? SettingPage : UserAuthPage;
+  rootPage: any = localStorage.getItem('isLogin') ? SettingPage : LoginPage;
 
   pages: Array<{ title: string, component: any }>;
 

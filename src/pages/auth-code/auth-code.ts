@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController, M
   LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import axios from 'axios';
+import { SettingPage } from '../setting/setting';
 
 @IonicPage()
 @Component({
@@ -40,7 +41,9 @@ export class AuthCodePage {
     loader.present();
 
     /* 后端验证 */
-    axios.post("/auth_sms_code.php", {auth_code: this.auth_code})
+    const email = localStorage.getItem("user_email");
+    console.log(email);
+    axios.post("/auth_sms_code.php", {auth_code: this.auth_code, user_email: email})
       .then((res) => {
         /* 验证成功 */
         if( !res.data.message ){
