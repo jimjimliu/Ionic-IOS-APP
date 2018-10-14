@@ -1,0 +1,28 @@
+<ion-content padding class="transparent-header">
+  
+  
+  <div padding class="content">
+    <ion-row>
+      <ion-col>
+        <!-- <img class="logo" src="assets/imgs/logo.gif"/> -->
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item class="user_name">
+            <!-- <ion-label>Username</ion-label> -->
+            <ion-input type="text" [(ngModel)]="user_name" placeholder="User Name"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button class="login-button" (click)="send_auth_code()">Send Verification Code</button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

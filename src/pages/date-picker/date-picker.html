@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <span class="closeBtn" (click)="closePage()">关闭</span>
+    <ion-title>选择月份</ion-title>
+    <span class="saveBtn" (click)="saveDate()" type="submit">完成</span>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="toggle toggle--text">
+    <input type="checkbox" id="toggle--text" class="toggle--checkbox">
+    <label class="toggle--btn" for="toggle--text" data-label-on="月"  data-label-off="日" (click)="change_time_measure()"></label>
+  </div>
+
+  <form [formGroup]="date" (ngSubmit)="saveDate()" [hidden]='hidden'>
+    <ion-item class="input-list"> 
+      <ion-label>月份</ion-label>
+      <ion-datetime displayFormat="YYYY年MM月" pickerFormat="YYYY MM" formControlName="datePick"></ion-datetime>
+    </ion-item>
+  </form>
+
+  <form  [hidden]='!hidden' [formGroup]='date' (ngSubmit)='saveDate()'>
+    <ion-item class="input-list"> 
+      <ion-label>From</ion-label>
+      <ion-datetime displayFormat="YYYY年MM月DD日" pickerFormat="YYYY MM DD" formControlName='from'></ion-datetime>
+    </ion-item>
+    <ion-item class="input-list"> 
+      <ion-label>To</ion-label>
+      <ion-datetime displayFormat="YYYY年MM月DD日" pickerFormat="YYYY MM DD" formControlName='to'></ion-datetime>
+    </ion-item>
+  </form>
+
+</ion-content>

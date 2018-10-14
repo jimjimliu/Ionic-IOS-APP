@@ -1,0 +1,35 @@
+page-bill-details {
+
+    .list{
+        padding-top: 1em;
+        .billDate{
+            font-size: 0.7em;
+        }
+        .billAmount{
+            font-weight: bold;
+            float: right;
+        }
+        button{
+            width: 4em;
+        }
+    }
+
+    .closeBtn{
+        margin-left: 5%;
+        align-self: center;
+        &:hover{
+            color: grey;
+        }
+    }
+    .calendar{
+        float: right;
+        margin-right: 7%;
+        font-size: 1.5em;
+        align-self: center;
+        color: #584f60;
+    }
+}
+/* toast can be given a css class label. However, style has to go outside of the page scss style,
+   since toast is not a part of the page. */
+.toast-container{
+}

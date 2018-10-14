@@ -1,0 +1,258 @@
+<ion-header [ngClass]="{'in': display}" class="header">
+  <ion-navbar class="navbar">
+      <ion-title>
+          Account
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="container">
+
+  <!-- 下拉页面刷新 -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- 页面数据面板（页面上半部）日历样式 -->
+  <div class="card-profile">
+    <div class="holes"></div>
+    <div class="flip"></div>
+    <!-- 圆形中心键上部数据面板 -->
+    <div class="card-profile_visual">
+
+      <ion-grid>
+        <ion-row class="summary" [ngStyle]="{'border-bottom': '1px solid white'}">
+          <ion-col col-12 class="stats">
+              <span [ngStyle]="{'padding-bottom':'5vh'}"> 本月支出（元）</span>
+              <p class="amount">￥{{monthly_total}}</p>
+          </ion-col>
+          <ion-col>
+              <!-- ticket icon -->
+              <div class="ticket-container">
+                <div class="triangle"><div class="dot"></div></div>
+                <div class="ticket">
+                  <div class="square">{{current_date}}</div>
+                  <div class="flips"></div>
+                </div>
+              </div>
+              <!-- ticket icon end -->
+
+              <!-- 日历图标，取消注释查看效果 -->
+              <!-- <div class="count">
+                {{current_date}}
+                <div class="flip"></div>
+                <div class="line"></div>
+              </div> -->
+          </ion-col>
+        </ion-row>
+        
+        <ion-row class="summary2">
+          <ion-col>
+              <span class="title"> 本月剩余（元）</span>
+          </ion-col>
+          <ion-col>
+              <span class="amount2">￥{{monthly_left}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <!-- 圆形中心键上部数据面板 结束 -->
+
+    <!-- 圆形中心键 -->
+    <div class="card-profile_central-button"><a href="#" (click)="toggle()"></a></div>
+
+    <!-- 圆形中心键下半部数据面板 -->
+    <div class="card-profile_user-stats">
+      <div class="stats-holder">
+        <div class="user-stats">
+          <strong>总支出（元）</strong>
+          <span>{{total}}</span>
+        </div>
+        <div class="user-stats">
+          <strong>（笔）</strong>
+          <span>{{number_of_expense}}</span>
+        </div>
+      </div>
+    </div> 
+    <!-- 圆形中心键下半部数据面板 结束 --> 
+    
+  </div>
+  <!-- 页面数据面板（页面上半部） 结束 -->
+  
+  <div class="divider"></div>
+
+  <!-- 九宫格面板 -->
+  <div class="control_panel">
+
+      <div class="control-row">
+        <div class="control-item">
+            <p><ion-icon ios="ios-paper" md="md-paper" class="panel_icon" (click)="showBillDetails()"></ion-icon></p>
+          <span>账单明细</span>
+        </div>
+        <div class="control-item">
+            <p><ion-icon name="md-analytics" md="md-analytics" class="panel_icon"></ion-icon></p>
+          <span>年视图</span>
+        </div>
+        <div class="control-item">
+            <p><ion-icon ios="ios-clipboard" md="md-clipboard" class="panel_icon" (click)="statistics_page()"></ion-icon></p>
+          <span>统计开销</span>
+        </div>
+      </div>
+    
+      <div class="control-row">
+        <div class="control-item">
+            <p><ion-icon ios="ios-list-box" md="md-list-box" class="panel_icon"></ion-icon></p>
+          <span>时间线</span>
+        </div>
+        <div class="control-item">
+            <p><ion-icon ios="ios-calendar" md="md-calendar" class="panel_icon"></ion-icon></p>
+          <span>统计开销</span>
+        </div>
+        <div class="control-item">
+            <p><ion-icon ios="ios-podium" md="md-podium" class="panel_icon"></ion-icon></p>
+          <span>月视图</span>
+        </div>
+        
+      </div>
+
+      <div class="control-row">
+        <div class="control-item">
+            <p><ion-icon ios="ios-cash-outline" md="md-albums" class="panel_icon"></ion-icon></p>
+          <span>年开销</span>
+        </div>
+        <div class="control-item">
+            <p><ion-icon ios="ios-albums" md="md-albums" class="panel_icon"></ion-icon></p>
+          <span>年开销</span>
+        </div>
+        <div class="control-item" style="padding-bottom: 1em">
+            <p><ion-icon ios="ios-albums" md="md-albums" class="panel_icon"></ion-icon></p>
+          <span>年开销</span>
+        </div>
+      </div>
+      
+  </div>
+  <!-- 九宫格面板 结束 -->
+
+
+  
+</ion-content>
+
+<!-- 点击圆形键之后弹出菜单部分 -->
+
+<!-- 由于是弹出的页面，不是一个独立page。所以在开启软键盘时，有一些元素会被键盘顶出到键盘上方位置。
+      如果是独立page，可以使用 .scroll-content 解决。但是在此处，作为一个弹出页面；
+      需要使用 cordova plugin add ionic-plugin-keyboard 来解决. -->
+
+<div class="popup-menu-2">
+  <!-- overlay： 弹出菜单之后背景部分的暗化。作用是点击背景部分也可以退出弹出菜单。 -->
+  <div class="popup-menu-overlay-2" [ngClass]="{'in': display}" (click)="toggle()"></div>
+  <div class="popup-menu-panel-2" [ngClass]="{'in': display}">
+
+    <form [formGroup]="data_list"  (ngSubmit)="logForm()">
+      <div class="formTitle">
+        <ion-icon ios="ios-clipboard" md="md-clipboard" class="panel_icon"></ion-icon>
+        <ion-label>添加账单</ion-label>
+      </div>
+      
+      <div class="list-item">
+          <ion-item class="input-list"> 
+            <ion-label>日期</ion-label>
+            <ion-datetime displayFormat="MM月DD日" pickerFormat="MM DD" formControlName="date"></ion-datetime>
+          </ion-item>
+      </div>
+
+      <div class="list-item">
+        <ion-item class="input-list">
+          <ion-label>类型</ion-label>
+          <!-- =================================================================================================
+            plugin: <ion-multi-picker> 
+            imported in app.module.ts;
+            source: https://github.com/raychenfj/ion-multi-picker
+            NPM: npm install ion-multi-picker --save
+           ================================================================================================= -->
+          <ion-multi-picker id="simple" doneText='save' separator=', '
+           item-content [multiPickerColumns]="simpleColumns" formControlName="type"></ion-multi-picker>
+        </ion-item>
+    </div>
+      
+      <div class="list-item"> 
+          <ion-item class="input-list">
+              <ion-label>名称</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+      </div>
+      
+      <div class="list-item">
+          <ion-item class="input-list">
+              <ion-label>金额</ion-label>
+              <ion-input type="text" formControlName="val"></ion-input>
+          </ion-item>
+      </div>
+      <!-- 空白处，点击可以退出弹出页面 -->
+      <div class="white-space" (click)='toggle()'></div>
+      
+    </form>
+
+    <div class="button">
+          <!-- data_list.valid 监控表单是否满足条件。如果满足，将按键开启； -->
+          <button ion-button type="submit" (click)="addBill()" [disabled]="!data_list.valid">保存</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- 点击圆形键之后弹出菜单部分 结束 -->
+
+
+
+<!-- 社交网络样式面板  -->
+<!-- <div class="control_panel1">
+  <div class="socialAnimationWrapper">
+      <ul class="socialAnimation">
+          <li class="person"><img src="assets/imgs/search.png" alt=""/></li>
+          <li class="facebook" (click)="showBillDetails()">
+              <img class="containerImg" src="assets/imgs/bill.png">
+              <div class="connector">
+                  <span class="one"></span>
+                  <span class="two"></span>
+              </div>
+              <span class="label">账单明细</span>
+          </li>
+          <li class="googlePlus">
+              <img class="containerImg" src="assets/imgs/data.png">
+              <div class="connector">
+                  <span class="one"></span>
+                  <span class="two"></span>
+              </div>
+              <span class="label">数据中心</span>
+          </li>
+          <li class="twitter">
+              <img class="containerImg" src="assets/imgs/bag.png">
+              <div class="connector">
+                  <span class="one"></span>
+                  <span class="two"></span>
+              </div>
+          </li>
+          <li class="linkedin">
+              <img class="containerImg" src="assets/imgs/book.png">
+              <div class="connector">
+                  <span class="one"></span>
+                  <span class="two"></span>
+              </div>
+          </li>
+          <li class="yt">
+              <img class="containerImg" src="assets/imgs/timeline.png">
+              <div class="connector">
+                  <span class="one"></span>
+                  <span class="two"></span>
+              </div>
+              <span class="label">时间线</span>
+          </li>
+      </ul>
+  </div>   
+</div> -->
+<!-- 中心发散网络样式面板 结束 -->

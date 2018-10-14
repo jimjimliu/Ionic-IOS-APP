@@ -1,0 +1,74 @@
+page-auth-code {
+
+      // Fullscreen centered image background
+  .transparent-header{
+    background-color: antiquewhite;
+  }
+  
+  ion-content {
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-color: transparent;
+  }
+
+  .closeBtn{
+    margin-left: 5%;
+    align-self: center;
+    color: black;
+    &:hover{
+        color: grey;
+    }
+  }
+  
+  .scroll-content {
+    background-image: radial-gradient(center center, ellipse cover, #ffeda3, #ffc800);
+    display: flex;
+    flex-direction: column;
+    //overflow: hidden; //允许页面上下滚动；此处如果为hidden的话，当键盘开启后，有可能挡住input框，会导致用户无法手动拖拽页面使输入框可见；
+  }
+  .logo {
+    width: 50vw;
+    //height: auto;
+    //max-width: 12em;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    margin-top:15%;
+  }
+  .no-border {
+    border-bottom: 10 !important;
+    box-shadow: none !important;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+  @media only screen and (min-width: 768px) {
+    ion-col.col {
+      margin: 0 auto;
+      max-width: 40%;
+    }
+  }
+  span {
+    color: white;
+  }
+  ion-item {
+    border-radius: 10px;
+    padding-left: 10px !important;
+    //margin-bottom: 10px;
+    background-color: #f6f6f6;
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+  ion-list {
+    margin: 0;
+  }
+  .login-button {
+    width: 100%;
+    // border-radius: 30px;
+    font-size: 0.9em;
+    // border: 1px solid #fff;
+    background-color: #39acdc;
+  }
+}

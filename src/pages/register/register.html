@@ -1,0 +1,47 @@
+
+<ion-header class="header">
+
+  <ion-navbar color="milk">
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="transparent-header">
+
+    <div padding class="content">
+      <ion-row>
+        <ion-col>
+          <img class="logo" src="assets/imgs/logo.gif"/>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list inset class="no-border">
+            <ion-item class="email">
+              <!-- <ion-label>Username</ion-label> -->
+              <ion-input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="email" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item class="email">
+              <!-- <ion-label>Username</ion-label> -->
+              <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <!-- <ion-label>Password</ion-label> -->
+              <ion-input type="password" [(ngModel)]="password" placeholder="password"></ion-input> 
+            </ion-item>
+            <ion-item>
+              <!-- <ion-label>Password</ion-label> -->
+              <ion-input type="password" [(ngModel)]="rePassword" placeholder="password"></ion-input> 
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button class="login-button" (click)="signUp()">SignUp</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-content>
+

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>
+          Personal
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+  <ion-list class="top-list">
+      <button ion-item [navPush]="userInfoPage" class="top-list-item">
+          <ion-thumbnail item-start class="thumbnail">
+              <img src="./assets/icon/shuying.png">
+          </ion-thumbnail>
+          <h2>{{id}}</h2>
+          <p>Account：{{email}}</p>
+      </button>
+  </ion-list>
+
+  <ion-list class="list">
+      <ion-item class="list-item">
+          <ion-icon name="logo-twitter" style="color: #55acee"></ion-icon> 
+          <span class="ionitem_text">Share</span>
+      </ion-item>
+      <button ion-item class="list-item">
+          <ion-icon name="compass" style="color: #31a56e"></ion-icon>
+          <span class="ionitem_text">donation</span>
+      </button>
+      <button ion-item class="list-item">
+          <ion-icon name="cube" style="color: #584f60"></ion-icon>
+          <span class="ionitem_text">activity</span>
+      </button>
+  </ion-list>
+
+  <ion-list class="list">
+      <button ion-item class="list-item">
+          Version
+          <span  item-end>V1.0</span>
+      </button>
+      <button ion-item class="list-item">
+          About
+      </button>
+  </ion-list>
+
+  <!-- <ion-item class="log_out_text" (click)="showConfirm()">
+      <span>Log Out</span>
+  </ion-item> -->
+
+  <ion-list>
+      <img src="assets/imgs/off.png" class="off-icon" (click)='logout()'>
+  </ion-list>
+
+</ion-content>

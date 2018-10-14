@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <span class="closeBtn" (click)="closeBillDetails()">关闭</span>
+    <ion-title>账单</ion-title>
+    <ion-icon ios="ios-calendar" md="md-calendar" class="calendar" (click)="pickDate()"></ion-icon>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list class="list">
+      <ion-item-sliding *ngFor="let item of billDetail_list; let i = index; ">
+        <ion-item>
+          <span class="billTitle">{{item.name}}</span>
+          <span class="billAmount">{{item.amount}}</span>
+          <p><span class="billDate">{{item.date}}</span></p>
+        </ion-item>
+        <ion-item-options icon-start (ionSwipe)="deleteItem(billDetail_list, i)">
+          <button color="danger" ion-button expandable (click)="deleteItem(billDetail_list, i)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+</ion-content>

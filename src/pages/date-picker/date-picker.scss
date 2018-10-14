@@ -1,0 +1,167 @@
+page-date-picker {
+
+    .closeBtn{
+        margin-left: 5%;
+        align-self: center;
+        &:hover{
+            color: grey;
+        }
+    }
+
+    .saveBtn{
+        float: right;
+        margin-right: 7%;
+        font-size: 1.1em;
+        align-self: center;
+        &:hover{
+            color: grey;
+        }
+    }
+
+    /* ==========================================================================================================
+            Some defaults across toggle
+   ========================================================================================================== */
+    .toggle {
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+        user-select: none;
+    }
+    
+    .toggle--checkbox {
+        display: none;
+    }
+    
+    .toggle--btn {
+        display: block;
+        margin: 0 auto;
+        font-size: 1.4em;
+        transition: all 350ms ease-in;
+    }
+    .toggle--btn:hover {
+        cursor: pointer;
+    }
+    
+    .toggle--btn, .toggle--btn:before, .toggle--btn:after,
+    .toggle--checkbox,
+    .toggle--checkbox:before,
+    .toggle--checkbox:after{
+        transition: all 200ms ease-in;
+    }
+    .toggle--btn:before, .toggle--btn:after,
+    .toggle--checkbox:before,
+    .toggle--checkbox:after{
+        content: '';
+        display: block;
+    }
+
+    /* ==========================================================================================================
+            text toggle button
+   ========================================================================================================== */
+   $toggleHeight: 15vw;
+   $toggleWidth: 40vw;
+
+   $toggle-borderColor: #8c8c8c;
+   $toggle-shadowColor: #999;
+
+   $activeTextColor: #db4c00;
+   $inactiveTextColor: #999;
+
+   .toggle--text {
+       padding-bottom: 8vh;
+       font-size: 70%;
+       margin-left: 35vw;
+       margin-top: 5vh;
+       .toggle--btn {
+           position: relative;
+           width: $toggleWidth;
+           height: $toggleHeight;
+           font-family: 'PT Sans', Sans Serif;
+           text-transform: uppercase;
+           font-weight: bold;
+
+           border-radius: 40px;
+           border: 1px solid $toggle-borderColor;
+           border-right: 2px solid $toggle-borderColor;
+
+           box-shadow: inset ($toggleWidth/2) 0 10px rgba(255, 255, 255, 0.6),
+                       inset -6px 3px 18px -2px $toggle-borderColor,
+                       0 0 15px #ccc,
+
+                       0px -2px 8px 1px #ddd,
+                       -5px -2px 8px 1px #ddd,
+                       5px -2px 8px 1px #ddd,
+                       -5px -2px 8px 1px #ddd,
+                       5px -2px 8px 1px #ddd,
+
+                       17px 9px 0 -5px rgba(255, 255, 255, 0.6),
+                       -3px 6px 12px -7px #000,
+
+
+                       //outlines
+                       0 0 0 6px #fff,
+                       0 0 0 7px $toggle-shadowColor;
+
+           &:before,
+           &:after {
+               position: absolute;
+               top: 50%;
+               transform: translateY(-50%);
+           }
+           &:before {
+               content: attr(data-label-on);
+               left: 15%;
+               color: $activeTextColor;
+
+
+           }
+           &:after {
+               content: attr(data-label-off);
+               right: 15%;
+               color: $inactiveTextColor;
+
+
+           }
+       }
+
+       .toggle--checkbox:checked {
+           & + .toggle--btn {
+               border-left: 2px solid $toggle-borderColor;
+               border-right: 1px solid $toggle-borderColor;
+
+               box-shadow: inset ($toggleWidth/2) 0 10px rgba(255, 255, 255, 0.6),
+                       inset 16px 3px 18px -2px $toggle-borderColor,
+                       0 0 15px #ccc,
+
+                       0px -2px 8px 1px #ddd,
+                       -5px -2px 8px 1px #ddd,
+                       5px -2px 8px 1px #ddd,
+                       -5px -2px 8px 1px #ddd,
+                       5px -2px 8px 1px #ddd,
+
+                       -17px 9px 0 -5px rgba(255, 255, 255, 0.6),
+                       3px 6px 12px -7px #000,
+
+
+                       //outlines
+                       0 0 0 6px #fff,
+                       0 0 0 7px $toggle-shadowColor;
+
+
+               &:before {
+                   color: $inactiveTextColor;
+
+               }
+               &:after {
+                   color: $activeTextColor;
+
+               }
+           }
+       }
+
+   }
+   /* ==========================================================================================================
+            text toggle button end
+   ========================================================================================================== */
+
+}

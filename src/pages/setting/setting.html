@@ -1,0 +1,50 @@
+
+<ion-tabs selectedIndex="0" id="tabs">  <!--index为0的tab button指向的初始页面-->
+  <ion-tab [root]="tab1root" tabTitle="账户" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2root" tabTitle="Live Activity" tabIcon="home" ></ion-tab>
+  <!-- tab 中心键； （按键触发事件用 ionSelect） -->
+  <ion-tab tabTitle="" tabIcon="#" (ionSelect)="togglePopupMenu()"></ion-tab>
+  <ion-tab [root]="tab3root" tabTitle="图表" tabIcon="person" ></ion-tab>
+  <ion-tab [root]="tab4root" tabTitle="我" tabIcon="person" ></ion-tab>
+</ion-tabs>
+
+<!-- 以下是按键之后弹出菜单部分 -->
+<div class="popup-menu">
+    <!-- overlay： 弹出菜单之后背景部分的暗化。作用是点击背景部分也可以退出弹出菜单。 -->
+		<div class="popup-menu-overlay" [ngClass]="{'in': openMenu}" (click)="togglePopupMenu()"></div>
+		<!--  <div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}"></div> -->
+		<div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+			<div class="popup-menu-item" (click)="goToHome()">
+				<ion-icon name="home"></ion-icon>
+				<ion-badge>25</ion-badge>
+				<span>HOME</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToCups()">
+				<ion-icon name="trophy"></ion-icon>
+				<span>CUPS</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToLeaderboard()">
+				<ion-icon name="podium"></ion-icon>
+				<ion-badge>10</ion-badge>
+				<span>LEADERBOARD</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToHelp()">
+				<ion-icon name="help"></ion-icon>
+				<span>HELP</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToAccount()">
+				<ion-icon name="person"></ion-icon>
+				<ion-badge>5</ion-badge>
+				<span>ACCOUNT</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToShop()">
+				<ion-icon name="cart"></ion-icon>
+				<ion-badge>25</ion-badge>
+				<span>SHOP</span>
+			</div>
+		</div>
+	</div>
+
+
+
+

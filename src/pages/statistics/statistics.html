@@ -1,0 +1,27 @@
+
+<ion-header>
+  <!-- <ion-navbar>
+      <span class="closeBtn" (click)="closePage()">关闭</span>
+    <ion-title>statistics</ion-title>
+  </ion-navbar> -->
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="heading_frame">
+    <span>Expense Details, {{expense_year}}</span>
+  </div>
+  <!-- pie_chart container -->
+  <div id="pie_chart" class="pie_chart"></div>
+  <!-- line_chart container -->
+  <div  id="line_chart" [hidden]='hidden'></div>
+  <ion-item>
+    <ion-range min='{{min_year}}' max='{{max_year}}' step="1" snaps="true" [(ngModel)]="year" color="danger" (ionChange)='select_year()'>
+      <ion-label range-left>{{min_year}}</ion-label>
+      <ion-label range-right>{{max_year}}</ion-label>
+    </ion-range>
+  </ion-item>
+
+
+</ion-content>

@@ -1,0 +1,41 @@
+page-statistics {
+
+    .closeBtn{
+        margin-left: 5%;
+        align-self: center;
+        &:hover{
+            color: grey;
+        }
+    }
+
+    $heading_frame_height: 11vh; // height of the red heading frame;
+    .pie_chart{
+        //position: relative;
+        width: 100vw;
+        margin-left: -4vw;
+        margin-top: $heading_frame_height - 2vh; // pie_chart container right after the heading frame;
+        color: #eeecdf;
+        height: 40vh;  
+    }
+
+    .heading_frame{
+        content:"";
+        width:100%;
+        height: $heading_frame_height; // 红色flip高度；
+        box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2);
+        background:#d64646;
+        position:absolute;
+        border-top-left-radius:6px;
+        border-top-right-radius:6px;
+        top:0; left:0;
+        text-align: center;
+        span{
+            position: relative;
+            color: azure;
+            font-weight: bold;
+            font-size: 2vh;
+            top: $heading_frame_height/2;
+        }
+    }
+
+}

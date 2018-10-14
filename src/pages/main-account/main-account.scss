@@ -1,0 +1,871 @@
+page-main-account {
+
+  /* ==========================================================================================================
+            header
+   ========================================================================================================== */
+
+  /* 点击按键之后暗化header */
+  .header.in{
+    opacity: 0.5;
+  }
+
+  /* ==========================================================================================================
+            header end
+   ========================================================================================================== */
+
+  /* ==========================================================================================================
+            中心键上半部
+   ========================================================================================================== */
+
+  /* 定义圆形键上半部数据样式 */
+  .summary{
+    float: left;
+    width: 100%;
+    height: 13.5vh;
+    margin-top: 8vh;
+    p{ color: #584f60; }
+    .stats{
+        flex: 1;
+        text-align: left;
+        position: relative;
+        margin-left: 1.2em;
+    }
+    span{
+        font-size: 2vh;
+        color: #584f60;
+        display: inline-block;
+    }
+    .amount{
+      font-size:3.5vh;
+      margin:0;
+      padding:0;
+      margin-left:-0.4em;
+      font-weight:bold;
+    }
+    &2{
+      color: #584f60;
+      .amount2{
+        font-size: 2.4vh;
+        font-weight: bold;
+        position: relative;
+        margin-left: 3em;
+      }
+      .title{
+        font-size: 2vh;
+        position: relative;
+        margin-left: 1.2em;
+      }
+    }
+  }
+  /* ==========================================================================================================
+            中心键上半部 结束
+   ========================================================================================================== */
+
+  /* 最底层的容器 */
+  .container{
+    background-color: #efeeee;
+  }
+
+  @font-face {
+    font-family: "ProximaNova-Regular";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.eot");
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/ProximaNova-Regular.svg#rocketdesign-font") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+  /* ==========================================================================================================
+            上半部界面日历背景样式
+   ========================================================================================================== */
+  .card-profile{
+    /* 上部红色边框 */
+    &:after{
+      content:"";
+      width:100%;
+      height:9vh; // 红色flip高度；
+      box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2);
+      background:#d64646;
+      position:absolute;
+      border-top-left-radius:6px;
+      border-top-right-radius:6px;
+      top:0; left:0;
+    }
+    /* 日历黑色孔 */
+    & .holes{ 
+      width:23px;
+      height:23px;
+      position: absolute;
+      border-radius:50%;
+      background:#37353a;
+      left:26vw;
+      top:3.5vh;
+      z-index:10;
+      box-shadow: inset 0 2px 0 0px rgba(0,0,0,0.25), 0 1px 0 0 rgba(255,255,255,0.2);
+    }
+    & .holes:after{
+      content:"";
+      width:23px;
+      height:23px;
+      position:absolute;
+      border-radius:50%;
+      background:#37353a;
+      left:41.2vw;
+      box-shadow: inset 0 2px 0 0px rgba(0,0,0,0.25), 0 1px 0 0 rgba(255,255,255,0.2);
+    }
+    /* 日历右下角翻页效果  */
+    & .flip{
+      position:absolute;
+      right:0;
+      bottom:0;
+      width: 0;
+      height: 0;
+      border-top: 5vh solid #fff;
+      border-right: 5vh solid transparent;
+    }
+    
+    & .flip:after{
+      content:"";
+      width:0;
+      height:0;
+      border-bottom: 5vh solid rgba(0,0,0,0.25);
+      border-left: 5vh solid transparent;
+      position:absolute;
+      top:-5vh;
+      right:0;
+    }
+  }
+  /* ==========================================================================================================
+            上半部界面日历背景样式
+   ========================================================================================================== */
+
+  /* ==========================================================================================================
+            上半部界面
+   ========================================================================================================== */
+
+  $card-profile-height: 45vh; // 整个 card-profile 高度
+  $gradient: #F96B4C,#F23182;
+  $radius: 10px;
+  $visual-height: 73%; //中心键上部高度；
+  $datas-height: calc(100% - #{$visual-height}+2px);
+    :root {
+    font-size: 16px;
+  }
+
+  .card-profile {
+    $round-icon-radius: 8vh;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: $card-profile-height; //整个card-profile division高度为屏幕的55%；
+    z-index: 1;
+    background:#eeecdf;
+
+    /* 中心键上部 */
+    &_visual {
+      height:$visual-height; //中心键上半部高度为card-profile的65%，也就是屏幕55%部分之中的65%；
+      overflow: hidden;
+      position: relative;
+      padding: 1.2em; //填充 card-profile_visual 四周空间；
+      border-radius: $radius;
+    }
+    
+    /* 中心键 */
+    &_central-button{
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      right: 0;
+      top: calc(#{$visual-height} - calc(#{$round-icon-radius} / 2));
+
+      a {
+        width: $round-icon-radius;
+        height: $round-icon-radius;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background: {
+          color: #F96B4C;
+          image: linear-gradient($gradient);
+        }
+        display: block;
+        clear: both;
+        margin: auto;
+        border-radius: 100%;
+        box-shadow: 0 2px 0 #D42D78,
+        0 3px 10px rgba(#F33180,
+        0.15),
+        0 0px 10px rgba(#F33180,
+        0.15),
+        0 0px 4px rgba(darken(#F33180,
+        80%),
+        0.35),
+        0 5px 20px rgba(#F33180,
+        0.25),
+        0 15px 40px rgba(#F33180,
+        0.75),
+        inset 0 0 15px rgba(#FFFFFF,
+        0.05);
+        overflow: hidden;
+        &:after {
+          content: '';
+          font-style: normal;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: block;
+          background: {
+            image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/icon-add-f.svg");
+            repeat: no-repeat;
+            size: 30%;
+            position: center center;
+          }
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+    /* 中心键 结束 */
+
+    /* 中心键点击下压效果 */
+    &_central-button:active{
+      transform: translateY(3px);
+    }
+    
+    /* 中心键下部 */
+    &_user-stats {
+      float: left;
+      width: 100%;
+      height: 27%;
+      border-radius: $radius;
+      box-shadow: 2px 2px 5px rgba(black, 0.5);//边缘暗化；
+      .stats-holder {
+        position: relative;
+        margin-top: 2.5vh;
+        width: 100%;
+        display: flex;
+      }
+      .user-stats {
+        flex: 1;
+        text-align: center;
+        strong {
+          display: block;
+          float: left;
+          clear: both;
+          width: 100%;
+          color: #B3B1B2;
+          font-size: 2vh;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+        }
+        span {
+          font-size: 3.2vh;
+          color: #5E5E5E;
+          padding: .18em 0;
+          display: inline-block;
+        }
+      }
+    }
+    /* 中心键下部 结束 */
+  }
+
+  .divider{
+    background-color: #efeeee;
+    height: 46vh;
+    position: relative;
+  }
+
+/* ==========================================================================================================
+            上半部界面 结束
+   ========================================================================================================== */
+   
+
+/* ==========================================================================================================
+            九格面板
+   ========================================================================================================== */ 
+  .control_panel{
+    width: 100%;
+    background-color: #eeecdf;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(black, 0.5); //底边阴影
+    margin-bottom: 1.2em;
+    border-radius: $radius; //圆角
+    .control-row {
+      position: relative;
+      width: 100%;
+      display: flex;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    .control-item{
+      flex: 1;
+      text-align: center;
+      p{
+        ion-icon{
+          font-size: 4vh; //ion-icon 图标大小
+        }
+        clear: both;
+        width: 100%;
+        color: #584f60;
+      }
+      span {
+        color: #B3B1B2; //字体颜色
+        font-weight: 500; //字体粗细
+      }
+    }
+  }
+
+  // .control_panel1{
+  //   width: 100%;
+  //   height: 90vw;
+  //   background-color: #eeecdf;
+  //   position: relative;
+  //   box-shadow: 2px 2px 5px rgba(black, 0.5); //底边阴影
+  //   margin-bottom: 1.2em;
+  //   border-radius: $radius; //圆角
+  //   box-sizing: content-box;
+  // }
+
+/* ==========================================================================================================
+            九格面板 结束
+   ========================================================================================================== */ 
+
+/* ==========================================================================================================
+            弹出菜单
+   ========================================================================================================== */  
+
+  .popup-menu-overlay-2{ 
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 5;
+    opacity: 1;
+    visibility: hidden; //隐藏界面；
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+    background-image: -webkit-linear-gradient(rgba(68, 68, 68, 0.5) 0%, rgba(68, 68, 68, 0.25) 100%);
+    background-image: linear-gradient(rgba(68, 68, 68, 0.5) 0%, rgba(68, 68, 68, 0.25) 100%);
+  }
+
+  /* in 变为true的时候，背景暗化 */
+  .popup-menu-overlay-2.in { 
+    opacity: 1;
+    visibility: visible; //显示界面；
+  }
+
+  //界面控制面板；
+  .popup-menu-panel-2 {
+    background-color: rgba($color: #584f60, $alpha: 0.9);
+    border-radius: 10px;
+    overflow: scroll;
+    position: fixed;
+    width: 90%;
+    height: 80%;
+    bottom: 12%;
+    left: 5%;
+    padding: 0px 5px;
+    z-index: 10;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  //定义button 按键样式
+  .button{
+    z-index: 12;
+    position: fixed;
+    width: 90%;
+    height: 40px;
+    position: relative;
+    top: 20%;
+    margin-left: 5%;
+    display: flex;
+    button{
+      width: 90%;
+      height: 40px;
+      margin-left: 5%;
+      border-radius: 7px;
+      color: #fff;
+      text-align: center;
+      background-color: #31a56e;
+      font-size: 1.2em;
+    }
+    text-align: center;
+  }
+
+  //定义整体表格样式
+  form{
+    z-index: 12;
+    position: relative;
+    height: 20%;
+    width: 80%;
+    margin-top: 5em;
+    margin-left: 10%;
+    .input-list{
+      z-index: 12;
+      position: relative;
+      border-radius:7px;
+      width: 110%;
+      margin-left: -5%;
+    }
+    .formTitle{
+      display: flex;
+      color: #fff;
+      font-size: 1.3em;
+      text-align: center;
+      position: relative;
+      margin-top: -2em;
+      padding-bottom: 2em;
+      ion-icon{
+        align-self: center;
+        font-size: 2em;
+        position: relative;
+        margin-left: 20%;
+      }
+    }
+    .list-item{
+      padding-bottom: 1em;
+    }
+  }
+
+  .popup-menu-panel-2.in {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+
+  /* 空白处，用来方便用户点击空白处也可以关闭弹出窗口 */
+  .white-space{
+    height: 100%;
+    width: 120%;
+    top: 0px; // 覆盖整个弹出界面
+    left: 0px;
+    z-index: 11; // 但是不覆盖界面中的表格和按键，表格的z-index=12；
+    position: fixed;
+    //background-color: black;
+  }
+
+/* ==========================================================================================================
+            弹出菜单 结束
+   ========================================================================================================== */ 
+
+
+/* ==========================================================================================================
+            ticket 图标
+   ========================================================================================================== */ 
+  $t-width: 13vh;
+  /* 图标父级division */
+  .ticket-container {
+    box-sizing: content-box;
+    width:$t-width;
+    height:$t-width;
+    position:relative;
+    background: #eeecdf;
+    margin-left: 30%;
+    margin-top: -2%;
+  }
+  /* 图标长方形部分 */  
+  .ticket {
+    width:68%;
+    height:60%;
+    background:#95b849;
+    border-bottom-right-radius:6px;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2);
+    position:absolute;
+    transform:rotate(45deg);
+    margin-left:18%;
+    margin-top:20%;
+    
+  }
+  /* 图标上方三角形部分 */  
+  .triangle {
+    content:"";
+    width:42.2%;
+    height:42.2%;
+    background:#95b849;
+    top:4.75%;
+    left:6.95%;
+    position:absolute;
+    border-top-left-radius:6px;
+    box-shadow: -1px 2px 2px 0px rgba(0,0,0,0.25);
+  }
+  /* 图标右下角折叠阴影 */  
+  .ticket:after {
+    content:"";
+    width:0;
+    height:0;
+    border-top: calc(#{$t-width / 7}) solid #eeecdf;
+    border-left: calc(#{$t-width / 7}) solid transparent;
+    position:absolute;
+    top:-1px;
+    right:-1px;
+  }
+  /* 图标右下角折叠 */
+  .ticket .flips {
+    position:absolute;
+    right:-3%;
+    top:-2%;
+    width: 0;
+    height: 0;
+    border-bottom: calc(#{$t-width / 7}) solid #b5d763;
+    border-right: calc(#{$t-width / 7}) solid transparent;
+  }
+  /* 折叠阴影 */
+  .ticket .flips:after {
+    content:"";
+    width:0;
+    height:0;
+    border-top: calc(#{$t-width / 7}) solid rgba(0,0,0,0.25);
+    border-left: calc(#{$t-width / 7}) solid transparent;
+    position:absolute;
+    top:calc(#{$t-width / 7});
+    right:-calc(#{$t-width / 7});
+  }
+  /* 图标长方形部分中的方块 */
+  .ticket .square {
+    width:65%;
+    height:50%;
+    background:rgba(255,255,255,0.25);
+    position:absolute;
+    top:25%;
+    left:17.5%;
+    font-family:Arial,Helvetica,'sans';
+    color:#eeecdf;
+    text-align:center;
+    font-size: calc(#{$t-width} / 3);   // 字体大小根据 ticket-container 的边长改变；
+    font-weight:bold;
+    line-height: 93%;
+    text-shadow: 0 2px rgba(0,0,0,0.25);
+  }
+  /* 圆孔 */
+  .dot {
+    content:"";
+    width:20%;
+    height:20%;
+    background:#37353a;
+    position:absolute;
+    border-radius:50%;
+    left: 25%;
+    top:25%;
+    box-shadow: inset 0 2px 0 0px rgba(0,0,0,0.25), 0 1px 0 0 rgba(255,255,255,0.2);
+  }
+
+/* ==========================================================================================================
+            ticket 图标 结束
+   ========================================================================================================== */ 
+
+    /* ==========================================================================================================
+            calendar 图标
+   ========================================================================================================== */ 
+    // $calendar-height: 13vh; // 与 .summary 的长度保持一致
+    // $calendar-width: 25vw;
+    // .count {
+    //   width:$calendar-width;
+    //   height:$calendar-height;
+    //   background:#988da7;
+    //   border-radius:6px;
+    //   //box-shadow: 0 2px 0 0px rgba(0,0,0,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2);
+    //   position:absolute;
+    //   left:26vw;
+    //   margin-left:-44px;
+    //   top: 8vh;
+    //   margin-top:-8vh; // 与 .summary 的margin-top 保持相同高度；
+    //   font-family:Arial,Helvetica,'sans';
+    //   color:#fff;
+    //   text-align:center;
+    //   font-size:54px;
+    //   font-weight:bold;
+    //   line-height: 13vh;
+    //   text-shadow: 0 2px rgba(0,0,0,0.25);
+    // }
+    
+    // .count:after {
+    //   content:"";
+    //   width:0;
+    //   height:0;
+    //   border-bottom: 23px solid #eeecdf;
+    //   border-bottom-right-radius: 6px;
+    //   border-left: 23px solid transparent;
+    //   position:absolute;
+    //   bottom:0px;
+    //   right:0px;
+    // }
+    
+    // .count .flip {
+    //   position:absolute;
+    //   right:0;
+    //   bottom:0;
+    //   width: 0;
+    //   height: 0;
+    //   border-top: 24px solid #beb4cb;
+    //   border-right: 24px solid transparent;
+    // }
+    // .count .flip:after {
+    //   content:"";
+    //   width:0;
+    //   height:0;
+    //   border-bottom: 24px solid rgba(0,0,0,0.30); // 右下角翻页阴影
+    //   border-left: 24px solid transparent;
+    //   position:absolute;
+    //   left:-24px;
+    //   top: -24px;
+    // }
+    
+    // .count .line {
+    //   content:"";
+    //   width:$calendar-width;
+    //   height:2px;
+    //   background:#37353a;
+    //   position: relative;;
+    //   top:- $calendar-height /2 ;
+    // }
+    /* ==========================================================================================================
+            calendar 图标 结束
+   ========================================================================================================== */ 
+
+  /* ==========================================================================================================
+            社交网络样式
+   ========================================================================================================== */ 
+  // $container-width: 90vw;
+  // $element-color: #95b849;
+  // .socialAnimationWrapper{
+  //   position: absolute;
+  //   width: $container-width;
+  //   height: $container-width;
+  //   margin-top: -4%;
+  //   box-sizing: content-box;
+  //   .socialAnimation{
+  //     width: 100%;
+  //     height: 100%;
+  //     box-sizing: content-box;
+  //     float: left;
+  //   }
+  // }
+
+  // .socialAnimation li{
+  //     position: absolute;
+  //     list-style-type: none;
+  // }
+  
+  // .socialAnimation{
+  //   .person{
+  //       width: 20%;
+  //       height: 20%;
+  //       margin-left: 30%;
+  //       margin-top: 40%;
+  //       z-index: 9;
+  //       img{
+  //         width: 85%;
+  //         // -webkit-border-radius: 50%;
+  //         // -moz-border-radius: 50%;
+  //         // border-radius: 50%;
+  //         margin: 8%;
+  //       }
+  //   }
+  // }
+
+  // .socialAnimation li div.connector span{
+  //     display: block;
+  //     width: calc(#{$container-width} / 20);
+  //     height: calc(#{$container-width} / 20);
+  //     -webkit-border-radius: 50%;
+  //     -moz-border-radius: 50%;
+  //     border-radius: 50%;
+  //     background-color: $element-color;
+  //     margin: -5px 0 0 25%;
+  //     position: absolute;
+
+  // }
+  // .socialAnimation li div.connector span.two{
+  //     display: block;
+  //     width: calc(#{$container-width} / 20);
+  //     height: calc(#{$container-width} / 20);
+  //     -webkit-border-radius: 50%;
+  //     -moz-border-radius: 50%;
+  //     border-radius: 50%;
+  //     background-color: $element-color;
+  //     margin: -5px 0 0 60%;
+  //     position: absolute;
+  // }
+
+  // .socialAnimation li .containerImg{
+  //     position: absolute;
+  //     background-color: #fff;
+  //     z-index: 10;
+  //     background-repeat: no-repeat;
+  // }
+
+  // .socialAnimation{
+  //   .facebook{
+  //     width: 25%;
+  //     height: 22%;
+  //     margin-left: -10%;
+  //     margin-top: 2%;
+  //     box-sizing: content-box;
+  //     .containerImg{
+  //       width: 80%;
+  //       height: 80%;
+  //       margin: 10%;
+  //     }
+  //     div.connector{
+  //       position: absolute;
+  //       background-color: $element-color;
+  //       height: 3px;
+  //       width: 180%;
+  //       margin-left: 50%;
+  //       margin-top: 130%;
+  //       transform:rotate(-135deg);
+  //     }
+  //     .label{
+  //       position: absolute;
+  //       margin-left: 15%;
+  //       margin-top: 84%;
+  //       font-size: calc(#{$container-width} / 24);
+  //       font-family:Arial,Helvetica,'sans';
+  //       color:#584f60;
+  //       text-align:center;
+  //       font-weight:bold;
+  //     }
+  //   }
+  // }
+
+  // .socialAnimation{
+  //   .googlePlus{
+  //     background: #eeecdf;
+  //     width: 22%;
+  //     height: 25%;
+  //     margin-left: 70%;
+  //     margin-top: 2%;
+  //     .containerImg{
+  //       width: 80%;
+  //       height: 80%;
+  //       margin: 10%;
+  //     }
+  //     div.connector{
+  //       position: absolute;
+  //       background-color: $element-color;
+  //       height: 3px;
+  //       width: 220%;
+  //       margin-top: 120%;
+  //       margin-left: -140%;
+  //       transform:rotate(-40deg); 
+  //     }
+  //     .label{
+  //       position: absolute;
+  //       margin-left: 13%;
+  //       margin-top: 105%;
+  //       font-size: calc(#{$container-width} / 24);
+  //       font-family:Arial,Helvetica,'sans';
+  //       color:#584f60;
+  //       text-align:center;
+  //       font-weight:bold;
+  //     }
+  //   }
+    
+  // }
+
+  // .socialAnimation{
+  //   .twitter{
+  //     width: 20%;
+  //     height: 23%;
+  //     margin-left: 76%;
+  //     margin-top: 50%;
+  //     .containerImg{
+  //       width: 80%;
+  //       height: 80%;
+  //       margin: 10%;
+  //       background-image: url("http://szymondziewonski.com/pictures/website/twitterIcon.png");
+  //     }
+  //   div.connector{
+  //     position: absolute;
+  //     background-color: $element-color;
+  //     height: 3px;
+  //     width: 220%;
+  //     margin-top: 20%;
+  //     margin-left: -180%;
+  //     transform:rotate(10deg); 
+  //     }
+  //   }
+  // }
+
+  // .socialAnimation{
+  //   .linkedin{
+  //     width: 20%;
+  //     height: 25%;
+  //     margin-left: -6%;
+  //     margin-top: 50%;
+  //     .containerImg{
+  //       width: 80%;
+  //       height: 80%;
+  //       margin: 10%;
+  //       background-image: url("http://szymondziewonski.com/pictures/website/linkedInIcon.png");
+  //     }
+  //     div.connector{
+  //       position: absolute;
+  //       background-color: $element-color;
+  //       height: 3px;
+  //       width: 200%;
+  //       margin-top: 20%;
+  //       margin-left: 40%;
+  //       transform:rotate(-195deg); 
+  //     }
+  //   }
+  // }
+
+  // .socialAnimation{
+  //   .yt{
+  //     width: 28%;
+  //     height: 28%;
+  //     margin-left: 40%;
+  //     margin-top: 70%;
+  //     .containerImg{
+  //       width: 75%;
+  //       height: 75%;
+  //       margin: 10%;
+  //       -webkit-border-radius: 50%;
+  //         -moz-border-radius: 50%;
+  //         border-radius: 50%;
+  //     }
+  //     div.connector{
+  //       position: absolute;
+  //       background-color: $element-color;
+  //       height: 3px;
+  //       width: 120%;
+  //       margin-top: -20%;
+  //       margin-left: -40%;
+  //       transform:rotate(60deg); 
+  //     }
+  //     .label{
+  //       position: absolute;
+  //       margin-left: 25%;
+  //       margin-top: 84%;
+  //       font-size: calc(#{$container-width} / 24);
+  //       font-family:Arial,Helvetica,'sans';
+  //       color:#584f60;
+  //       text-align:center;
+  //       font-weight:bold;
+  //     }
+  //   }
+  // }
+  /* ==========================================================================================================
+            社交网络样式 结束
+   ========================================================================================================== */ 
+}

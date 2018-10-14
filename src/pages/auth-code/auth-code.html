@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <span class="closeBtn" (click)="close()">关闭</span>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="transparent-header">
+  
+  
+  <div padding class="content">
+    <ion-row>
+      <ion-col>
+        <!-- <img class="logo" src="assets/imgs/logo.gif"/> -->
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item class="auth_code">
+            <!-- <ion-label>Username</ion-label> -->
+            <ion-input type="text" [(ngModel)]="auth_code" placeholder="Verification Code"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button class="login-button" (click)="verify_code()">VERIFY</button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,60 @@
+page-information {
+
+    .toolbar-title-md{
+        text-align: center;
+    }
+    
+    .scroll-content{
+        //overflow: hidden;
+    }
+
+    .bg-color{
+        background-color: #efeeee;
+    }
+
+    .top-list{
+        $height: 11vh;
+        margin-top: 15px;
+        &-item{
+            max-height: $height;
+            img{
+                width: calc(#{$height} / 1.4);
+                height: calc(#{$height} / 1.4);
+            }
+            h2, p{
+                font-size: calc(#{$height} / 5.7);
+                margin-left: 2px
+            }
+        }
+    }
+
+    .ionitem_text{
+        margin-left: 5%;
+    }
+
+    .log_out_text{
+        text-align: center;
+        font-weight: bolder;
+    }
+
+    .list{
+        $height: 11vh;
+        &-item{
+            font-size: calc(#{$height} / 5);
+            min-height: calc(#{$height} / 5) ;
+        }
+    }
+
+    /************************************ 关机图标样式 ************************************************/
+
+    .off-icon{
+        width: 10vh;
+        margin-left: calc(#{50%} - 5vh);
+        /* 按键下压效果 */
+        &:active{
+            transform: translateY(5px);
+        }
+    }
+
+    /************************************ 关机图标样式 结束************************************************/
+}
