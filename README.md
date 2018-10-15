@@ -24,11 +24,11 @@ One could use SQLite, PostgreSQL, MongoDb, and etc. There are many choices of da
     
 ## Demo
 ### Sign up
-![img](https://github.com/jimjimliu/Bill/blob/master/demo/1.gif)
+![img](https://github.com/jimjimliu/Bill-Ionic-/blob/master/demo/1.gif)
 ### 2FA Verification
-![img](https://github.com/jimjimliu/Bill/blob/master/demo/2.gif)
+![img](https://github.com/jimjimliu/Bill-Ionic-/blob/master/demo/2.gif)
 ###
-![img](https://github.com/jimjimliu/Bill/blob/master/demo/3.gif)
+![img](https://github.com/jimjimliu/Bill-Ionic-/blob/master/demo/3.gif)
 ### 
-![img](https://github.com/jimjimliu/Bill/blob/master/demo/4.gif)
+![img](https://github.com/jimjimliu/Bill-Ionic-/blob/master/demo/4.gif)
 
