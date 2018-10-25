@@ -13,7 +13,7 @@ import { LoginPage } from '../login/login';
 export class UserAuthPage {
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public alertCtrl: AlertController,
-    private menuCtrl: MenuController, public modalCtrl: ModalController, private view: ViewController) {
+    private menuCtrl: MenuController, public modalCtrl: ModalController, private view: ViewController, private params: NavParams) {
   }
 
   phone_number: String = '';
@@ -66,8 +66,7 @@ export class UserAuthPage {
           /* 将验证码储存到local数据库 */
           localStorage.setItem('auth_code', res.data.data);
           /* 跳转页面 */
-          //this.navCtrl.setRoot(AuthCodePage);
-          let page = this.modalCtrl.create(AuthCodePage);
+          let page = this.modalCtrl.create(AuthCodePage, {toLogin: this.params.get('toLogin')});
           page.present();
         }
         /* 验证码发送失败 */

@@ -14,8 +14,10 @@ export class AuthCodePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController,
     public alertCtrl: AlertController, public modalCtrl:ModalController, public app: App, private loadingCtrl: LoadingController) {
-  }
-
+      this.toLogin = this.navParams.get('toLogin');
+    }
+  
+  toLogin: boolean;
   auth_code: String='';
 
   ionViewDidLoad() {
@@ -49,7 +51,13 @@ export class AuthCodePage {
         if( !res.data.message ){
           loader.dismiss();
           this.view.dismiss();
-          this.app.getRootNav().push(LoginPage);
+          // this.app.getRootNav().setRoot(LoginPage, {email: this.email, password: this.password});
+          if(this.toLogin){this.app.getRootNav().setRoot(LoginPage);}
+          else{
+            localStorage.setItem('isLogin', 'true');
+            localStorage.setItem('email', email)
+            this.app.getRootNav().setRoot(SettingPage);
+          }
         }
         /* 验证失败 */
         else{
@@ -59,9 +67,6 @@ export class AuthCodePage {
             subTitle: res.data.message,
             buttons: [{
               text: "CLOSE",
-              // handler:() =>{
-              //   this.view.dismiss();
-              // }
             }]
           }).present()
         }
@@ -70,24 +75,5 @@ export class AuthCodePage {
       })
   }
 
-  // verify_code(){
-  //   var original_code = localStorage.getItem('auth_code');
-  //   /* 验证成功，跳转页面 */
-  //   if ( this.auth_code == original_code ){
-  //     /* 清除本地保存的验证码 */
-  //     localStorage.removeItem('auth_code');
-  //     /* 清除modal page */
-  //     this.view.dismiss();
-  //     this.app.getRootNav().push(LoginPage);
-  //   }
-  //   /* 验证失败 */
-  //   else{
-  //     this.alertCtrl.create({
-  //       title: 'FAIL',
-  //       subTitle: "Verification failed.",
-  //       buttons: ['CLOSE']
-  //     }).present()
-  //   }
-  // }
 
 }

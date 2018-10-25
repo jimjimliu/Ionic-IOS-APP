@@ -1,8 +1,6 @@
 import { Component } from '@angular/core'
 import axios from 'axios'
 import { AlertController, IonicPage, NavController, NavParams, App } from 'ionic-angular'
-import { LoginPage } from '../login/login'
-import { AuthCodePage } from '../auth-code/auth-code';
 import { UserAuthPage } from '../user-auth/user-auth';
 
 @IonicPage()
@@ -24,6 +22,9 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  /*******************************************************
+   * 注册
+   *******************************************************/
   signUp () {
     this.validate(() => {
       axios.post('/register.php', {
@@ -42,6 +43,9 @@ export class RegisterPage {
           }
           //注册成功
           localStorage.setItem("user_email", this.email);
+          //储存salt
+          localStorage.setItem("salt", res.data['data']);
+
           this.alertCtrl.create({
             title: 'Success',
             message: 'Press ok and login',
@@ -49,11 +53,11 @@ export class RegisterPage {
               {
                 text: 'OK',
                 handler: () => {
-                  // this.app.getRootNav().push(UserAuthPage);
                 }
               }
             ]
           }).present()
+          /* 跳转手机号验证 */
           this.app.getRootNav().push(UserAuthPage);
         }).catch(error => {
           /* 另外，在app.module.ts 中有拦截器处理异常。 */

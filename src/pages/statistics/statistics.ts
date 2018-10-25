@@ -198,12 +198,4 @@ export class StatisticsPage {
         }]
     });
   }
-
-  /* ==============================================================================
-  close the modal page
-  ==============================================================================*/
-  // closePage(){
-  //   console.log(this.navCtrl.getViews());
-  //   this.navCtrl.pop();
-  // }
 }
