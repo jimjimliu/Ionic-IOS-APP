@@ -1,7 +1,8 @@
 <?php
     /* ======================================================================
      接口：
-        验证码 auth_code: String
+        auth_code: 验证码
+        user_email: 账户
      返回数据：
         {"data": Boolean, "current_user": xx}
      
@@ -10,7 +11,7 @@
      ====================================================================== */
     
     //会话ID
-    session_id('jimliu');
+    session_id('');
     //开启会话
     session_start();
     
@@ -45,6 +46,10 @@
     $auth_code = $DATA['auth_code'];
     $email = $DATA['user_email'];
     
+    //
+    $sql = "select phone_num from users where email='$email';";
+    $phone_num = $conn->query($sql)->fetch_array()[0];
+    
     /* session过期，清除send-sms.php中设置的session数据 */
     if( isset($_SESSION['expireTime']) and $_SESSION['expireTime'] < time()){
         //清除session数据
@@ -58,14 +63,14 @@
         //清除session数据
         unset($_SESSION['code']);
         unset($_SESSION['expireTime']);
+        
         //更新用户手机号
-        if( ! update_db($conn, $email, $_SESSION['phone_num']) ){
-            echo response_message("phone number update error.");
+        if ($phone_num == '0'){
+            update_db($conn, $email, $_SESSION['phone_num']);
             unset($_SESSION['phone_num']);
-            exit(0);
+            echo response_data(true);
         }
-        unset($_SESSION['phone_num']);
-        echo response_data(true);
+  
     }else{
         echo response_message("Session Expired. Please Send Verification Code Again.");
     }

@@ -2,8 +2,8 @@
     /* =================================================================
      |  创建时间： 2018-05-01                                           |
      |  Data Posted:                                                  |
-     |          用户邮箱: String                                        |
-     |          用户密码: String                                        |
+     |          email: 账户                                            |
+     |          password: 密码                                          |
      |  Date respond:                                                  |
      |          {"date": Boolean, "current_user":xx}                   |
      |  为新用户注册， 插入新的用户到数据库；                                 |
@@ -25,8 +25,8 @@
      @return:
         Boolean
     ================================================================= */
-    function register($conn, $email, $password){
-        $sql = "INSERT INTO users(email, password, phone_num) VALUES('$email','$password',0)";
+    function register($conn, $email, $password, $salt){
+        $sql = "INSERT INTO users(email, password, phone_num, salt) VALUES('$email','$password',0, '$salt');";
         $result = $conn->query($sql);
         return $result;
     }
@@ -38,9 +38,9 @@
      @return:
         void
     ================================================================= */
-    function respond($result){
+    function respond($result, $salt){
         if ($result) {
-            echo response_data($result);
+            echo response_data($salt);
         } else {
             echo response_message("Register error! Please use another Email");
         }
@@ -49,10 +49,14 @@
     $DATA = get_post_data();
     $email = $DATA['email'];
     $password = $DATA['password'];
+    //生成salt
+    $salt = bin2hex(random_bytes(30));
+    //hmac加密 密码+salt
+    $psw = hash_hmac("sha256", $password, $salt);
     
     //注册
-    $result = register($conn, $email, $password);
+    $result = register($conn, $email, $psw, $salt);
     //返回数据
-    respond($result);
+    respond($result, $salt);
 
 ?>
