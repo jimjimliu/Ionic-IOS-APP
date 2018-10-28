@@ -24,8 +24,9 @@
     //启动会话
     session_start();
 
-    $email = $_GET['email'];
-    $local_psw = $_GET['hmac_psw'];
+    $DATA = get_post_data();
+    $email = $DATA['email'];
+    $local_psw = $DATA['hmac_psw'];
 
     //获取用户手机号
     $sql = "SELECT phone_num FROM users WHERE email = '$email';";

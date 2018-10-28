@@ -80,7 +80,7 @@ export class LoginPage {
       /* hmac加密 */
       const hmac_psw = HMAC(this.password, salt).toString(HEX);
       /* 请求 */
-      axios.get('/users/login.php?', {params:{email: this.email, hmac_psw: hmac_psw}})
+      axios.post('/users/login.php', {email: this.email, hmac_psw: hmac_psw})
         .then((res) => {
           /* 登录成功 */
           if( res.data['data'] == 'True' ){
@@ -111,7 +111,7 @@ export class LoginPage {
     }
     /* 没有salt */
     else{
-      axios.get('/users/user_auth.php?', {params:{email: this.email}})
+      axios.post('/users/user_auth.php', {email: this.email})
         .then((res) => {
           /* 用户不存在 */
           if(res.data['message']){
