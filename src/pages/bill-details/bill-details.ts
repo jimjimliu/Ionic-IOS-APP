@@ -133,7 +133,7 @@ export class BillDetailsPage {
     list.splice(index,1); //删除界面中的选项
     toast.present(); // 显示toast
 
-    axios.post('/deleteBill.php', {billID: ID, email:email}) //在数据库中删除；
+    axios.post('/statistics/bill.php', {billID: ID, email:email}) //在数据库中删除；
       .then((res) => {
         toast.dismiss();  // 关闭toast
         console.log(res.data.data);
