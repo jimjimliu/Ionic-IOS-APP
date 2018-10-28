@@ -86,9 +86,7 @@ export class AppModule {
     连接后端API
      ================================================================= */
     /* if running on localhost server, uncomment the following line */
-    //axios.defaults.baseURL = 'http://localhost/api/api/';
-    /* if running on server, uncomment the following line */
-    axios.defaults.baseURL = '';
+    axios.defaults.baseURL = 'http://localhost/api/api/';
     axios.defaults.timeout =  15000; // 设置axios的最长默认请求时间，如果超出15秒，在页面中catch error，然后处理异常；
 
     // 添加请求拦截器

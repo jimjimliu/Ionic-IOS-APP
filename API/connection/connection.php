@@ -12,8 +12,8 @@
     
     $servername = "localhost";
     $username = "root";
-    $password = "";
-    $dbname = "project";
+    $password = "xxx";
+    $dbname = "xxx";
 
     
     // 创建连接

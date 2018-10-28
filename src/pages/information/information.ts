@@ -29,7 +29,7 @@ export class InformationPage {
   */
   fetchInfomation () {
     const email = localStorage.getItem('email');
-    axios.post('/info.php', { email })
+    axios.post('/statistics/info.php', { email })
       .then(res => {
         const {
           id,
@@ -60,11 +60,6 @@ export class InformationPage {
           handler: () => {
             localStorage.removeItem('isLogin');
             localStorage.removeItem('email');
-            //this.navCtrl.setRoot(LoginPage)
-            /*
-            this.app.getRootNav().push(), will hide tabs in child component
-            xxx.setRoot(), will hide tabs and set root page from top level;
-            */
            this.app.getRootNav().setRoot(LoginPage);
           }
         }

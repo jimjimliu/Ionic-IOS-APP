@@ -14,9 +14,15 @@ export class UserAuthPage {
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public alertCtrl: AlertController,
     private menuCtrl: MenuController, public modalCtrl: ModalController, private view: ViewController, private params: NavParams) {
-  }
+      this.toLogin = this.params.get('toLogin');
+      this.email = this.params.get('email');
+      this.password = this.params.get('password');
+    }
 
-  phone_number: String = '';
+  phone_number: string = '';
+  toLogin: string = '';
+  email: string = '';
+  password: string = '';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserAuthPage');
@@ -58,7 +64,7 @@ export class UserAuthPage {
     loader.present();
 
     /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
-    axios.post('/send-sms.php', {phone_number: this.phone_number, country_code:'+1'})
+    axios.post('/2FA/sms_code.php', {phone_number: this.phone_number, country_code:'+1'})
       .then((res) => {
         loader.dismiss();
         /* 如果message为空，说明验证码发送成功 */
@@ -66,7 +72,7 @@ export class UserAuthPage {
           /* 将验证码储存到local数据库 */
           localStorage.setItem('auth_code', res.data.data);
           /* 跳转页面 */
-          let page = this.modalCtrl.create(AuthCodePage, {toLogin: this.params.get('toLogin')});
+          let page = this.modalCtrl.create(AuthCodePage, {toLogin: this.toLogin, email:this.email, password:this.password});
           page.present();
         }
         /* 验证码发送失败 */

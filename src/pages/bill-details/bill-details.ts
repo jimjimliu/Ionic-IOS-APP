@@ -47,7 +47,7 @@ export class BillDetailsPage {
     loader.present();
 
     /* 请求数据 */
-    axios.post('/billDetails.php', { data: post_data })
+    axios.post('/statistics/bill_details.php', { data: post_data })
       .then((res) => { 
         loader.dismiss(); // 数据成功传回后，取消加载框；
         if(res.data.message){

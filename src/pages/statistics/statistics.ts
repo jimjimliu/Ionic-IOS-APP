@@ -42,7 +42,7 @@ export class StatisticsPage {
     var static_array;
 
     /* request api to process data */
-    axios.post('/statistics.php', { email:email, selected_year:this.year })
+    axios.post('/statistics/bill_year.php', { email:email, selected_year:this.year })
       .then((res)=>{
         if( !res.data.message ){
           static_array = res.data['data'];
@@ -100,7 +100,7 @@ export class StatisticsPage {
     /* set html data [expense_year] */
     this.expense_year = this.year;
     var static_array;
-    axios.post('/statistics.php', { email:email, selected_year:this.year })
+    axios.post('/statistics/bill_year.php', { email:email, selected_year:this.year })
       .then((res)=>{
         /* 如果当前年份有数据返回，显示图表 */
         if( ! res.data.message ){

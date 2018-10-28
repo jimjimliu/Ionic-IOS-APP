@@ -15,10 +15,14 @@ export class AuthCodePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController,
     public alertCtrl: AlertController, public modalCtrl:ModalController, public app: App, private loadingCtrl: LoadingController) {
       this.toLogin = this.navParams.get('toLogin');
+      this.email = this.navParams.get('email');
+      this.password = this.navParams.get('password');
     }
   
   toLogin: boolean;
-  auth_code: String='';
+  auth_code: string='';
+  email: string = '';
+  password: string ='';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthCodePage');
@@ -42,25 +46,18 @@ export class AuthCodePage {
     });
     loader.present();
 
-    /* 后端验证 */
-    const email = localStorage.getItem("user_email");
-    console.log(email);
-    axios.post("/auth_sms_code.php", {auth_code: this.auth_code, user_email: email})
+    //请求salt
+    axios.post("/users/salt.php", {auth_code: this.auth_code, user_email: this.email})
       .then((res) => {
         /* 验证成功 */
-        if( !res.data.message ){
+        if( res.data['data']['salt'] ){
           loader.dismiss();
           this.view.dismiss();
-          // this.app.getRootNav().setRoot(LoginPage, {email: this.email, password: this.password});
-          if(this.toLogin){this.app.getRootNav().setRoot(LoginPage);}
-          else{
-            localStorage.setItem('isLogin', 'true');
-            localStorage.setItem('email', email)
-            this.app.getRootNav().setRoot(SettingPage);
-          }
-        }
-        /* 验证失败 */
-        else{
+          //储存salt
+          localStorage.setItem(this.email, res.data['data']['salt']);
+          if(this.toLogin){this.app.getRootNav().setRoot(LoginPage, {email:this.email, password:this.password});}
+   
+        }else{
           loader.dismiss();
           this.alertCtrl.create({
             title: 'FAIL',

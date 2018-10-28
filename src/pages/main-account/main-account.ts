@@ -114,7 +114,7 @@ export class MainAccountPage {
   fetchInformation(){
     const email = localStorage.getItem('email');
     var month = (new Date()).getMonth()+1;
-    axios.post('/bill_summary.php', { email:email, selected_month:month })
+    axios.post('/statistics/bill_summary.php', { email:email, selected_month:month })
       .then((res)=>{
         this.monthly_total = res.data['data']['monthly_total'];
         this.monthly_left = res.data['data']['monthly_left'];
@@ -159,7 +159,7 @@ export class MainAccountPage {
     var year = (new Date()).getFullYear();
     var date = this.data_list.value['date'].toString().substring(0, 10);
 
-    axios.post('addBill.php', {email:email,info_type:type,info_cat: category, info_name:name,info_amount:amount,info_month:month, info_year:year, 
+    axios.post('/statistics/bill_new.php', {email:email,info_type:type,info_cat: category, info_name:name,info_amount:amount,info_month:month, info_year:year, 
       info_date:date})
       .then(res => {
         /* 返回数据异常，处理异常 */

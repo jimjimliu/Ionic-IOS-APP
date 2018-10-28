@@ -4,11 +4,12 @@ CREATE TABLE users
 (
   id        INT AUTO_INCREMENT PRIMARY KEY,
   email     VARCHAR(255) NOT NULL UNIQUE,
-  password  TEXT         NOT NULL
+  password  TEXT         NOT NULL,
+  salt  TEXT NOT NULL
 );
 
-INSERT INTO users (email, password)
-VALUES ('jliu187@uottawa.ca', '000000');
+INSERT INTO users ('email', 'password', 'salt')
+VALUES ('test@test.com', '000000', 'xxxxx');
 
 
 

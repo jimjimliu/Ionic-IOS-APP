@@ -27,7 +27,7 @@ export class RegisterPage {
    *******************************************************/
   signUp () {
     this.validate(() => {
-      axios.post('/register.php', {
+      axios.post('/users/register.php', {
         email: this.email,
         password: this.password
       })
@@ -42,10 +42,6 @@ export class RegisterPage {
             return
           }
           //注册成功
-          localStorage.setItem("user_email", this.email);
-          //储存salt
-          localStorage.setItem("salt", res.data['data']);
-
           this.alertCtrl.create({
             title: 'Success',
             message: 'Press ok and login',
@@ -58,7 +54,7 @@ export class RegisterPage {
             ]
           }).present()
           /* 跳转手机号验证 */
-          this.app.getRootNav().push(UserAuthPage);
+          this.app.getRootNav().push(UserAuthPage, {toLogin: true, email:this.email, password:this.password});
         }).catch(error => {
           /* 另外，在app.module.ts 中有拦截器处理异常。 */
           console.log(error);
