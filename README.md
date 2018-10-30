@@ -15,6 +15,9 @@
    choices of database.
 
 ## To Run
+`npm install -g ionic`
+`npm i`
+`ionic serve --browser google chrome`
 
  1. Install database support: `MySQL` `Redis`, and configure PHP extensions for MySQL and Redis.
  2. Get your DB ready. Locate file: `API/createDataBase.sql` and run to create database tables.
