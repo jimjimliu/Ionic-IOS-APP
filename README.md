@@ -1,15 +1,16 @@
-﻿# Ionic IOS App
+# Ionic IOS App
 ## *Description*
 The general use so far developed for the app is to allow one to keep their personal bills, track their past bills based on date/month/year, and view bill summary in charts.
 
 ## Backend API
-The backend API is running on localhost, but also running on a remote server provided by Hostinger. 
-The API is written in PHP and database is MySQL. 
+The backend API is running on localhost, but also running on a remote server. 
+The API is written in PHP and database is MySQL and Redis. 
 One could use SQLite, PostgreSQL, MongoDb, and etc. There are many choices of database. 
 
 ## Run
+>Currently support U.S/Canada phone authentication.
 
-> first one need to install node.js
+> first one need to install node.js, MySQL, and Redis, then
 
     npm install -g ionic
 

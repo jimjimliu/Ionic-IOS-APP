@@ -10,7 +10,7 @@
      *          current_user: xxxx
      *      }   
      *      
-     * 客户端没有salt，请求salt
+     * 客户端没有salt，检查用户有无注册手机号，请求salt
      **********************************************************************************/
     
     header("Access-Control-Allow-Origin: *");
@@ -38,7 +38,7 @@
     //有手机号
     if($phone_num != '0'){
         //发送验证码
-        send_sms("+1", $phone_num);
+        send_sms("+1", $phone_num, $email); 
         $array = array('auth'=>true);
         echo response_data($array);
     }else{//无手机号

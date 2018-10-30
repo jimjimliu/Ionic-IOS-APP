@@ -93,17 +93,16 @@ export class LoginPage {
           /* 添加手机号 */
           else if( res.data['data'] == 'False' ){
             loader.dismiss();
-            this.navCtrl.push(UserAuthPage);
+            this.navCtrl.push(UserAuthPage, {toLogin: true, email:this.email, password:this.password});
           }else{ /* 验证失败 */
             loader.dismiss();
             //如果有遗留salt，移除
-            if(localStorage.getItem('salt')){
-              localStorage.removeItem('salt');
+            if(localStorage.getItem(this.email)){
+              localStorage.removeItem(this.email);
             }
-            const message = res.data.message;
             this.alertCtrl.create({
               buttons: ['ok'],
-              title: message
+              title: res.data.message
             }).present();
             return
           }
@@ -131,7 +130,7 @@ export class LoginPage {
           /* 有手机号 */
           else{
             loader.dismiss();
-            this.navCtrl.push(AuthCodePage, {toLogin: true,email:this.email, password:this.password});
+            this.navCtrl.push(AuthCodePage, {toLogin: true, email:this.email, password:this.password});
           }
         });
     }

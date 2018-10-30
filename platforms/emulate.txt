@@ -1,0 +1,6 @@
+
+
+
+
+//cordova 目前不兼容Xcode 10最新版本，用一下脚本运行CLI
+ionic cordova emulate ios -- --buildFlag="-UseModernBuildSystem=0"

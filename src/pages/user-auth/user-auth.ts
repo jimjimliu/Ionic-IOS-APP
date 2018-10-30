@@ -64,7 +64,7 @@ export class UserAuthPage {
     loader.present();
 
     /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
-    axios.post('/2FA/sms_code.php', {phone_number: this.phone_number, country_code:'+1'})
+    axios.post('/2FA/sms_code.php', {phone_number: this.phone_number, country_code:'+1', user_email:this.email})
       .then((res) => {
         loader.dismiss();
         /* 如果message为空，说明验证码发送成功 */

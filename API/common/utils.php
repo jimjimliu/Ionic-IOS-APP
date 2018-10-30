@@ -9,6 +9,9 @@
     error_reporting(0);
     require __DIR__ . '/../module/vendor/autoload.php';
     use Twilio\Rest\Client;
+    /* 连接redis */
+    include "../connection/redis.php";
+    $GLOBALS['redis'] = $redis;
     
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Access-Control-Allow-Origin: *');
@@ -19,6 +22,7 @@
         header('Content-Type: text/plain');
         die();
     }
+    
     /*
      返回数据;
      @param:
@@ -77,22 +81,22 @@
         $str = substr($chars, 0, $len);
         return $str;
     }
-    
-    /****************************************
-     * @param $phone
+
+    /**
+     * 发送验证码到手机；redis保存验证码;
+     * @param $country_code :地域码
+     * @param $phone : 电话号
+     * @param $email :账户
      * @return boolean
-     * 发送验证码到手机；
-     ****************************************/
-    function send_sms($country_code, $phone){
-        session_id('');
-        //开启会话
-        session_start();
+     */
+    function send_sms($country_code, $phone, $email){
         /* 生成验证码 */
         $auth_code = generate_code();
-        /* session 保存验证码60秒 */
-        $_SESSION['code'] = $auth_code;
-        $_SESSION['expireTime'] = time()+60;
-        $_SESSION['phone_num'] = $phone;
+        
+        /* redis hash保存验证码+手机号, 保存六十秒 */
+        $array = array('code'=>$auth_code, 'phone'=>$phone);
+        $GLOBALS['redis']->hmset($email, $array);
+        $GLOBALS['redis']->expire($email, 60);
         
         // Find your Account Sid and Auth Token at twilio.com/console
         // 配置信息发送者密保；
@@ -108,11 +112,20 @@
             )
             );
         if ( $message->sid ){
-            return true;
+            return $auth_code;
         }else{
             return false;
         }
     }
     
+    
+    /**
+     * 删除redis中的键值;
+     * @param  $key :redis 键
+     * @return Integer 
+     */
+    function redis_del_key($key){
+        return $GLOBALS['redis']->del($key);
+    }
 
 ?>

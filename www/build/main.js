@@ -9,7 +9,7 @@ webpackJsonp([12],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_auth_user_auth__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -78,30 +78,30 @@ var RegisterPage = /** @class */ (function () {
     };
     RegisterPage.prototype.validate = function (cb) {
         if (isEmpty(this.password) || isEmpty(this.email) || isEmpty(this.rePassword)) {
-            var alert = this.alertCtrl.create({
+            var alert_1 = this.alertCtrl.create({
                 title: 'Validate failed',
                 subTitle: 'All fields are required',
                 buttons: ['ok']
             });
-            alert.present();
+            alert_1.present();
             return;
         }
         if (this.password !== this.rePassword) {
-            var alert = this.alertCtrl.create({
+            var alert_2 = this.alertCtrl.create({
                 title: 'Validate failed',
                 subTitle: 'password must be same',
                 buttons: ['ok']
             });
-            alert.present();
+            alert_2.present();
             return;
         }
         if (!this.email.includes('@')) {
-            var alert = this.alertCtrl.create({
+            var alert_3 = this.alertCtrl.create({
                 title: 'Validate failed',
                 subTitle: 'Email is not correct',
                 buttons: ['ok']
             });
-            alert.present();
+            alert_3.present();
             return;
         }
         cb && cb();
@@ -110,10 +110,10 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-register',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/register/register.html"*/'\n<ion-header class="header">\n\n  <ion-navbar color="milk">\n    <ion-title></ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding class="transparent-header">\n\n    <div padding class="content">\n      <ion-row>\n        <ion-col>\n          <img class="logo" src="assets/imgs/logo.gif"/>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-list inset class="no-border">\n            <ion-item class="email">\n              <!-- <ion-label>Username</ion-label> -->\n              <ion-input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="email" placeholder="Email"></ion-input>\n            </ion-item>\n            <ion-item>\n              <!-- <ion-label>Password</ion-label> -->\n              <ion-input type="password" [(ngModel)]="password" placeholder="password"></ion-input> \n            </ion-item>\n            <ion-item>\n              <!-- <ion-label>Password</ion-label> -->\n              <ion-input type="password" [(ngModel)]="rePassword" placeholder="password"></ion-input> \n            </ion-item>\n          </ion-list>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <button ion-button class="login-button" (click)="signUp()">SignUp</button>\n        </ion-col>\n      </ion-row>\n    </div>\n  </ion-content>\n\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"]])
     ], RegisterPage);
     return RegisterPage;
-    var _a, _b, _c, _d;
 }());
 
 function isEmpty(val) {
@@ -203,10 +203,9 @@ var InformationPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-information',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/information/information.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title>\n          Personal\n      </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="bg-color">\n  <ion-list class="top-list">\n      <button ion-item [navPush]="userInfoPage" class="top-list-item">\n          <ion-thumbnail item-start class="thumbnail">\n              <img src="./assets/icon/shuying.png">\n          </ion-thumbnail>\n          <h2>{{id}}</h2>\n          <p>Account：{{email}}</p>\n      </button>\n  </ion-list>\n\n  <ion-list class="list">\n      <ion-item class="list-item">\n          <ion-icon name="logo-twitter" style="color: #55acee"></ion-icon> \n          <span class="ionitem_text">Share</span>\n      </ion-item>\n      <button ion-item class="list-item">\n          <ion-icon name="compass" style="color: #31a56e"></ion-icon>\n          <span class="ionitem_text">donation</span>\n      </button>\n      <button ion-item class="list-item">\n          <ion-icon name="cube" style="color: #584f60"></ion-icon>\n          <span class="ionitem_text">activity</span>\n      </button>\n  </ion-list>\n\n  <ion-list class="list">\n      <button ion-item class="list-item">\n          Version\n          <span  item-end>V1.0</span>\n      </button>\n      <button ion-item class="list-item">\n          About\n      </button>\n  </ion-list>\n\n  <!-- <ion-item class="log_out_text" (click)="showConfirm()">\n      <span>Log Out</span>\n  </ion-item> -->\n\n  <ion-list>\n      <img src="assets/imgs/off.png" class="off-icon" (click)=\'logout()\'>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/information/information.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["App"]])
     ], InformationPage);
     return InformationPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=information.js.map
@@ -419,7 +418,7 @@ var BillDetailsPage = /** @class */ (function () {
         var ID = list[index].bill_id;
         list.splice(index, 1); //删除界面中的选项
         toast.present(); // 显示toast
-        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/deleteBill.php', { billID: ID, email: email }) //在数据库中删除；
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/statistics/bill.php', { billID: ID, email: email }) //在数据库中删除；
             .then(function (res) {
             toast.dismiss(); // 关闭toast
             console.log(res.data.data);
@@ -481,10 +480,11 @@ var BillDetailsPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-bill-details',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/bill-details/bill-details.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <span class="closeBtn" (click)="closeBillDetails()">关闭</span>\n    <ion-title>账单</ion-title>\n    <ion-icon ios="ios-calendar" md="md-calendar" class="calendar" (click)="pickDate()"></ion-icon>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <ion-list class="list">\n      <ion-item-sliding *ngFor="let item of billDetail_list; let i = index; ">\n        <ion-item>\n          <span class="billTitle">{{item.name}}</span>\n          <span class="billAmount">{{item.amount}}</span>\n          <p><span class="billDate">{{item.date}}</span></p>\n        </ion-item>\n        <ion-item-options icon-start (ionSwipe)="deleteItem(billDetail_list, i)">\n          <button color="danger" ion-button expandable (click)="deleteItem(billDetail_list, i)">\n            <ion-icon name="trash"></ion-icon>\n          </button>\n        </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/bill-details/bill-details.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _j || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ToastController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
     ], BillDetailsPage);
     return BillDetailsPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=bill-details.js.map
@@ -794,10 +794,10 @@ var StatisticsPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-statistics',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/statistics/statistics.html"*/'\n<ion-header>\n  <!-- <ion-navbar>\n      <span class="closeBtn" (click)="closePage()">关闭</span>\n    <ion-title>statistics</ion-title>\n  </ion-navbar> -->\n</ion-header>\n\n\n<ion-content padding>\n\n  <div class="heading_frame">\n    <span>Expense Details, {{expense_year}}</span>\n  </div>\n  <!-- pie_chart container -->\n  <div id="pie_chart" class="pie_chart"></div>\n  <!-- line_chart container -->\n  <div  id="line_chart" [hidden]=\'hidden\'></div>\n  <ion-item>\n    <ion-range min=\'{{min_year}}\' max=\'{{max_year}}\' step="1" snaps="true" [(ngModel)]="year" color="danger" (ionChange)=\'select_year()\'>\n      <ion-label range-left>{{min_year}}</ion-label>\n      <ion-label range-right>{{max_year}}</ion-label>\n    </ion-range>\n  </ion-item>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/statistics/statistics.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
     ], StatisticsPage);
     return StatisticsPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=statistics.js.map
@@ -838,23 +838,23 @@ var map = {
 		9
 	],
 	"../pages/date-picker/date-picker.module": [
-		328,
+		329,
 		8
 	],
 	"../pages/information/information.module": [
-		329,
+		328,
 		7
 	],
 	"../pages/login/login.module": [
-		332,
+		330,
 		6
 	],
 	"../pages/main-account/main-account.module": [
-		330,
+		331,
 		5
 	],
 	"../pages/navigation/navigation.module": [
-		331,
+		332,
 		4
 	],
 	"../pages/register/register.module": [
@@ -1103,15 +1103,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_list_list__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_register_register__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_setting_setting__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_setting_setting__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_navigation_navigation__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_chart1_chart1__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_main_account_main_account__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_bill_details_bill_details__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_date_picker_date_picker__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_statistics_statistics__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_user_auth_user_auth__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_auth_code_auth_code__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_user_auth_user_auth__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_auth_code_auth_code__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_storage__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_sms__ = __webpack_require__(321);
@@ -1245,11 +1245,11 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/auth-code/auth-code.module#AuthCodePageModule', name: 'AuthCodePage', segment: 'auth-code', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/bill-details/bill-details.module#BillDetailsPageModule', name: 'BillDetailsPage', segment: 'bill-details', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chart1/chart1.module#Chart1PageModule', name: 'Chart1Page', segment: 'chart1', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/date-picker/date-picker.module#DatePickerPageModule', name: 'DatePickerPage', segment: 'date-picker', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/information/information.module#InformationPageModule', name: 'InformationPage', segment: 'information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/date-picker/date-picker.module#DatePickerPageModule', name: 'DatePickerPage', segment: 'date-picker', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-account/main-account.module#MainAccountPageModule', name: 'MainAccountPage', segment: 'main-account', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/navigation/navigation.module#NavigationPageModule', name: 'NavigationPage', segment: 'navigation', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/setting/setting.module#SettingPageModule', name: 'SettingPage', segment: 'setting', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/statistics/statistics.module#StatisticsPageModule', name: 'StatisticsPage', segment: 'statistics', priority: 'low', defaultHistory: [] },
@@ -1304,7 +1304,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_setting_setting__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_setting_setting__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1361,15 +1361,15 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setting_setting__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_auth_user_auth__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setting_setting__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_auth_user_auth__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_crypto_js_hmac_sha256__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_crypto_js_hmac_sha256___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_crypto_js_hmac_sha256__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_crypto_js_enc_hex__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_crypto_js_enc_hex___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_crypto_js_enc_hex__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_code_auth_code__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_code_auth_code__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1499,18 +1499,17 @@ var LoginPage = /** @class */ (function () {
                         }
                         else if (res.data['data'] == 'False') {
                             loader.dismiss();
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__user_auth_user_auth__["a" /* UserAuthPage */]);
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__user_auth_user_auth__["a" /* UserAuthPage */], { toLogin: true, email: _this.email, password: _this.password });
                         }
                         else {
                             loader.dismiss();
                             //如果有遗留salt，移除
-                            if (localStorage.getItem('salt')) {
-                                localStorage.removeItem('salt');
+                            if (localStorage.getItem(_this.email)) {
+                                localStorage.removeItem(_this.email);
                             }
-                            var message = res.data.message;
                             _this.alertCtrl.create({
                                 buttons: ['ok'],
-                                title: message
+                                title: res.data.message
                             }).present();
                             return;
                         }
@@ -1557,86 +1556,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 43:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information_information__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list_list__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__ = __webpack_require__(57);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var SettingPage = /** @class */ (function () {
-    function SettingPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.tab1root = __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__["a" /* MainAccountPage */];
-        this.tab2root = __WEBPACK_IMPORTED_MODULE_3__list_list__["a" /* ListPage */];
-        this.tab3root = __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__["a" /* NavigationPage */];
-        this.tab4root = __WEBPACK_IMPORTED_MODULE_2__information_information__["a" /* InformationPage */];
-        this.openMenu = false; //判定绿色菜单页面的显示；
-    }
-    SettingPage.prototype.togglePopupMenu = function () {
-        return this.openMenu = !this.openMenu;
-    };
-    SettingPage.prototype.goToAccount = function () {
-        alert('Account clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.goToHome = function () {
-        alert('Home clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.goToCups = function () {
-        alert('Cups clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.goToLeaderboard = function () {
-        alert('Leaderboard clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.goToHelp = function () {
-        alert('Help clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.goToShop = function () {
-        alert('Shop clicked.');
-        this.togglePopupMenu();
-    };
-    SettingPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SettingPage');
-    };
-    SettingPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-setting',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/setting/setting.html"*/'\n<ion-tabs selectedIndex="0" id="tabs">  <!--index为0的tab button指向的初始页面-->\n  <ion-tab [root]="tab1root" tabTitle="账户" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2root" tabTitle="Live Activity" tabIcon="home" ></ion-tab>\n  <!-- tab 中心键； （按键触发事件用 ionSelect） -->\n  <ion-tab tabTitle="" tabIcon="#" (ionSelect)="togglePopupMenu()"></ion-tab>\n  <ion-tab [root]="tab3root" tabTitle="图表" tabIcon="person" ></ion-tab>\n  <ion-tab [root]="tab4root" tabTitle="我" tabIcon="person" ></ion-tab>\n</ion-tabs>\n\n<!-- 以下是按键之后弹出菜单部分 -->\n<div class="popup-menu">\n    <!-- overlay： 弹出菜单之后背景部分的暗化。作用是点击背景部分也可以退出弹出菜单。 -->\n		<div class="popup-menu-overlay" [ngClass]="{\'in\': openMenu}" (click)="togglePopupMenu()"></div>\n		<!--  <div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{\'out\': openMenu}"></div> -->\n		<div class="popup-menu-panel" [ngClass]="{\'in\': openMenu}">\n			<div class="popup-menu-item" (click)="goToHome()">\n				<ion-icon name="home"></ion-icon>\n				<ion-badge>25</ion-badge>\n				<span>HOME</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToCups()">\n				<ion-icon name="trophy"></ion-icon>\n				<span>CUPS</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToLeaderboard()">\n				<ion-icon name="podium"></ion-icon>\n				<ion-badge>10</ion-badge>\n				<span>LEADERBOARD</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToHelp()">\n				<ion-icon name="help"></ion-icon>\n				<span>HELP</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToAccount()">\n				<ion-icon name="person"></ion-icon>\n				<ion-badge>5</ion-badge>\n				<span>ACCOUNT</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToShop()">\n				<ion-icon name="cart"></ion-icon>\n				<ion-badge>25</ion-badge>\n				<span>SHOP</span>\n			</div>\n		</div>\n	</div>\n\n\n\n\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/setting/setting.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], SettingPage);
-    return SettingPage;
-}());
-
-//# sourceMappingURL=setting.js.map
-
-/***/ }),
-
-/***/ 55:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1736,7 +1656,7 @@ var AuthCodePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1746,7 +1666,7 @@ var AuthCodePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_index__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_code_auth_code__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1852,7 +1772,7 @@ var UserAuthPage = /** @class */ (function () {
                 });
                 loader.present();
                 /* post到后端API，发送验证码到用户手机，并且返回验证码，储存到本地 */
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/2FA/sms_code.php', { phone_number: this.phone_number, country_code: '+1' })
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/2FA/sms_code.php', { phone_number: this.phone_number, country_code: '+1', user_email: this.email })
                     .then(function (res) {
                     loader.dismiss();
                     /* 如果message为空，说明验证码发送成功 */
@@ -1899,6 +1819,85 @@ var UserAuthPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=user-auth.js.map
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__information_information__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list_list__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__ = __webpack_require__(57);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var SettingPage = /** @class */ (function () {
+    function SettingPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.tab1root = __WEBPACK_IMPORTED_MODULE_5__main_account_main_account__["a" /* MainAccountPage */];
+        this.tab2root = __WEBPACK_IMPORTED_MODULE_3__list_list__["a" /* ListPage */];
+        this.tab3root = __WEBPACK_IMPORTED_MODULE_4__navigation_navigation__["a" /* NavigationPage */];
+        this.tab4root = __WEBPACK_IMPORTED_MODULE_2__information_information__["a" /* InformationPage */];
+        this.openMenu = false; //判定绿色菜单页面的显示；
+    }
+    SettingPage.prototype.togglePopupMenu = function () {
+        return this.openMenu = !this.openMenu;
+    };
+    SettingPage.prototype.goToAccount = function () {
+        alert('Account clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.goToHome = function () {
+        alert('Home clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.goToCups = function () {
+        alert('Cups clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.goToLeaderboard = function () {
+        alert('Leaderboard clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.goToHelp = function () {
+        alert('Help clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.goToShop = function () {
+        alert('Shop clicked.');
+        this.togglePopupMenu();
+    };
+    SettingPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SettingPage');
+    };
+    SettingPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-setting',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/setting/setting.html"*/'\n<ion-tabs selectedIndex="0" id="tabs">  <!--index为0的tab button指向的初始页面-->\n  <ion-tab [root]="tab1root" tabTitle="账户" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2root" tabTitle="Live Activity" tabIcon="home" ></ion-tab>\n  <!-- tab 中心键； （按键触发事件用 ionSelect） -->\n  <ion-tab tabTitle="" tabIcon="#" (ionSelect)="togglePopupMenu()"></ion-tab>\n  <ion-tab [root]="tab3root" tabTitle="图表" tabIcon="person" ></ion-tab>\n  <ion-tab [root]="tab4root" tabTitle="我" tabIcon="person" ></ion-tab>\n</ion-tabs>\n\n<!-- 以下是按键之后弹出菜单部分 -->\n<div class="popup-menu">\n    <!-- overlay： 弹出菜单之后背景部分的暗化。作用是点击背景部分也可以退出弹出菜单。 -->\n		<div class="popup-menu-overlay" [ngClass]="{\'in\': openMenu}" (click)="togglePopupMenu()"></div>\n		<!--  <div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{\'out\': openMenu}"></div> -->\n		<div class="popup-menu-panel" [ngClass]="{\'in\': openMenu}">\n			<div class="popup-menu-item" (click)="goToHome()">\n				<ion-icon name="home"></ion-icon>\n				<ion-badge>25</ion-badge>\n				<span>HOME</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToCups()">\n				<ion-icon name="trophy"></ion-icon>\n				<span>CUPS</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToLeaderboard()">\n				<ion-icon name="podium"></ion-icon>\n				<ion-badge>10</ion-badge>\n				<span>LEADERBOARD</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToHelp()">\n				<ion-icon name="help"></ion-icon>\n				<span>HELP</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToAccount()">\n				<ion-icon name="person"></ion-icon>\n				<ion-badge>5</ion-badge>\n				<span>ACCOUNT</span>\n			</div>\n			<div class="popup-menu-item" (click)="goToShop()">\n				<ion-icon name="cart"></ion-icon>\n				<ion-badge>25</ion-badge>\n				<span>SHOP</span>\n			</div>\n		</div>\n	</div>\n\n\n\n\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/setting/setting.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], SettingPage);
+    return SettingPage;
+}());
+
+//# sourceMappingURL=setting.js.map
 
 /***/ }),
 
@@ -2138,10 +2137,10 @@ var MainAccountPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-main-account',template:/*ion-inline-start:"/Users/junhanliu/lab02/ionic/src/pages/main-account/main-account.html"*/'<ion-header [ngClass]="{\'in\': display}" class="header">\n  <ion-navbar class="navbar">\n      <ion-title>\n          Account\n      </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="container">\n\n  <!-- 下拉页面刷新 -->\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="下拉刷新"\n      refreshingSpinner="circles"\n      refreshingText="正在刷新...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <!-- 页面数据面板（页面上半部）日历样式 -->\n  <div class="card-profile">\n    <div class="holes"></div>\n    <div class="flip"></div>\n    <!-- 圆形中心键上部数据面板 -->\n    <div class="card-profile_visual">\n\n      <ion-grid>\n        <ion-row class="summary" [ngStyle]="{\'border-bottom\': \'1px solid white\'}">\n          <ion-col col-12 class="stats">\n              <span [ngStyle]="{\'padding-bottom\':\'5vh\'}"> 本月支出（元）</span>\n              <p class="amount">￥{{monthly_total}}</p>\n          </ion-col>\n          <ion-col>\n              <!-- ticket icon -->\n              <div class="ticket-container">\n                <div class="triangle"><div class="dot"></div></div>\n                <div class="ticket">\n                  <div class="square">{{current_date}}</div>\n                  <div class="flips"></div>\n                </div>\n              </div>\n              <!-- ticket icon end -->\n\n              <!-- 日历图标，取消注释查看效果 -->\n              <!-- <div class="count">\n                {{current_date}}\n                <div class="flip"></div>\n                <div class="line"></div>\n              </div> -->\n          </ion-col>\n        </ion-row>\n        \n        <ion-row class="summary2">\n          <ion-col>\n              <span class="title"> 本月剩余（元）</span>\n          </ion-col>\n          <ion-col>\n              <span class="amount2">￥{{monthly_left}}</span>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n    <!-- 圆形中心键上部数据面板 结束 -->\n\n    <!-- 圆形中心键 -->\n    <div class="card-profile_central-button"><a href="#" (click)="toggle()"></a></div>\n\n    <!-- 圆形中心键下半部数据面板 -->\n    <div class="card-profile_user-stats">\n      <div class="stats-holder">\n        <div class="user-stats">\n          <strong>总支出（元）</strong>\n          <span>{{total}}</span>\n        </div>\n        <div class="user-stats">\n          <strong>（笔）</strong>\n          <span>{{number_of_expense}}</span>\n        </div>\n      </div>\n    </div> \n    <!-- 圆形中心键下半部数据面板 结束 --> \n    \n  </div>\n  <!-- 页面数据面板（页面上半部） 结束 -->\n  \n  <div class="divider"></div>\n\n  <!-- 九宫格面板 -->\n  <div class="control_panel">\n\n      <div class="control-row">\n        <div class="control-item">\n            <p><ion-icon ios="ios-paper" md="md-paper" class="panel_icon" (click)="showBillDetails()"></ion-icon></p>\n          <span>账单明细</span>\n        </div>\n        <div class="control-item">\n            <p><ion-icon name="md-analytics" md="md-analytics" class="panel_icon"></ion-icon></p>\n          <span>年视图</span>\n        </div>\n        <div class="control-item">\n            <p><ion-icon ios="ios-clipboard" md="md-clipboard" class="panel_icon" (click)="statistics_page()"></ion-icon></p>\n          <span>统计开销</span>\n        </div>\n      </div>\n    \n      <div class="control-row">\n        <div class="control-item">\n            <p><ion-icon ios="ios-list-box" md="md-list-box" class="panel_icon"></ion-icon></p>\n          <span>时间线</span>\n        </div>\n        <div class="control-item">\n            <p><ion-icon ios="ios-calendar" md="md-calendar" class="panel_icon"></ion-icon></p>\n          <span>统计开销</span>\n        </div>\n        <div class="control-item">\n            <p><ion-icon ios="ios-podium" md="md-podium" class="panel_icon"></ion-icon></p>\n          <span>月视图</span>\n        </div>\n        \n      </div>\n\n      <div class="control-row">\n        <div class="control-item">\n            <p><ion-icon ios="ios-cash-outline" md="md-albums" class="panel_icon"></ion-icon></p>\n          <span>年开销</span>\n        </div>\n        <div class="control-item">\n            <p><ion-icon ios="ios-albums" md="md-albums" class="panel_icon"></ion-icon></p>\n          <span>年开销</span>\n        </div>\n        <div class="control-item" style="padding-bottom: 1em">\n            <p><ion-icon ios="ios-albums" md="md-albums" class="panel_icon"></ion-icon></p>\n          <span>年开销</span>\n        </div>\n      </div>\n      \n  </div>\n  <!-- 九宫格面板 结束 -->\n\n\n  \n</ion-content>\n\n<!-- 点击圆形键之后弹出菜单部分 -->\n\n<!-- 由于是弹出的页面，不是一个独立page。所以在开启软键盘时，有一些元素会被键盘顶出到键盘上方位置。\n      如果是独立page，可以使用 .scroll-content 解决。但是在此处，作为一个弹出页面；\n      需要使用 cordova plugin add ionic-plugin-keyboard 来解决. -->\n\n<div class="popup-menu-2">\n  <!-- overlay： 弹出菜单之后背景部分的暗化。作用是点击背景部分也可以退出弹出菜单。 -->\n  <div class="popup-menu-overlay-2" [ngClass]="{\'in\': display}" (click)="toggle()"></div>\n  <div class="popup-menu-panel-2" [ngClass]="{\'in\': display}">\n\n    <form [formGroup]="data_list"  (ngSubmit)="logForm()">\n      <div class="formTitle">\n        <ion-icon ios="ios-clipboard" md="md-clipboard" class="panel_icon"></ion-icon>\n        <ion-label>添加账单</ion-label>\n      </div>\n      \n      <div class="list-item">\n          <ion-item class="input-list"> \n            <ion-label>日期</ion-label>\n            <ion-datetime displayFormat="MM月DD日" pickerFormat="MM DD" formControlName="date"></ion-datetime>\n          </ion-item>\n      </div>\n\n      <div class="list-item">\n        <ion-item class="input-list">\n          <ion-label>类型</ion-label>\n          <!-- =================================================================================================\n            plugin: <ion-multi-picker> \n            imported in app.module.ts;\n            source: https://github.com/raychenfj/ion-multi-picker\n            NPM: npm install ion-multi-picker --save\n           ================================================================================================= -->\n          <ion-multi-picker id="simple" doneText=\'save\' separator=\', \'\n           item-content [multiPickerColumns]="simpleColumns" formControlName="type"></ion-multi-picker>\n        </ion-item>\n    </div>\n      \n      <div class="list-item"> \n          <ion-item class="input-list">\n              <ion-label>名称</ion-label>\n              <ion-input type="text" formControlName="name"></ion-input>\n          </ion-item>\n      </div>\n      \n      <div class="list-item">\n          <ion-item class="input-list">\n              <ion-label>金额</ion-label>\n              <ion-input type="text" formControlName="val"></ion-input>\n          </ion-item>\n      </div>\n      <!-- 空白处，点击可以退出弹出页面 -->\n      <div class="white-space" (click)=\'toggle()\'></div>\n      \n    </form>\n\n    <div class="button">\n          <!-- data_list.valid 监控表单是否满足条件。如果满足，将按键开启； -->\n          <button ion-button type="submit" (click)="addBill()" [disabled]="!data_list.valid">保存</button>\n    </div>\n\n  </div>\n</div>\n\n<!-- 点击圆形键之后弹出菜单部分 结束 -->\n'/*ion-inline-end:"/Users/junhanliu/lab02/ionic/src/pages/main-account/main-account.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
     ], MainAccountPage);
     return MainAccountPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=main-account.js.map
