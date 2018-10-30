@@ -18,11 +18,12 @@
 
  1. Install database support: `MySQL` `Redis`, and configure PHP extensions for MySQL and Redis.
  2. Get your DB ready. Locate file: `API/createDataBase.sql` and run to create database tables.
- 3. Set base url of Backend API. Locate `src/app/app.module.ts`. Change `axios.defaults.baseURL=''` to your own server path.
- 4. Install `node.js`
- 5. Run `npm install -g ionic`
- 6. Locate project folder run `npm i`
- 7. Web Debugging. Locate project folder and run `ionic serve --browser google chrome`
+ 3. Get ready PHP -> DB connection. Locate `Api/api/connection/` to set connection information for MySQL and Redis.
+ 4. Set base url of Backend API. Locate `src/app/app.module.ts`. Change `axios.defaults.baseURL=''` to your own server path.
+ 5. Install `node.js`
+ 6. Run `npm install -g ionic`
+ 7. Locate project folder run `npm i`
+ 8. Web Debugging. Locate project folder and run `ionic serve --browser google chrome`
  
  
 ## Demo
