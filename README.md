@@ -1,28 +1,30 @@
 # Ionic IOS App
 ## *Description*
-The general use so far developed for the app is to allow one to keep their personal bills, track their past bills based on date/month/year, and view bill summary in charts.
 
-## Backend API
-The backend API is running on localhost, but also running on a remote server. 
-The API is written in PHP and database is MySQL and Redis. 
-One could use SQLite, PostgreSQL, MongoDb, and etc. There are many choices of database. 
+ - This is an IOS accounting App supports users to add, delete, search,
+   view their daily bills.   
+ - Currently support U.S./Canada phone authentication.
+ - `LAMP `Built using `Ionic4` + `PHP` + `MySQL` + `Redis`+`Apache`
+ - Frontend: `Angular.js` + `HTML` + `SCSS` + `TypeScript` + `Axios`
+ - Backend: `PHP` + `MySQL` + `Redis`
 
-## Run
->Currently support U.S/Canada phone authentication.
+## Backend API 
 
-> first one need to install node.js, MySQL, and Redis, then
+ - REST API is written in PHP and database is MySQL and Redis.  
+ - One could use SQLite, PostgreSQL, MongoDb, and etc. There are many
+   choices of database.
 
-    npm install -g ionic
+## To Run
 
-> locate project folder run
-
- `npm i`
-
-> Web Debugging 
-> locate project folder
-
-    ionic serve
-    
+ 1. Install database support: `MySQL` `Redis`, and configure PHP extensions for MySQL and Redis.
+ 2. Get your DB ready. Locate file: `API/createDataBase.sql` and run to create database tables.
+ 3. Set base url of Backend API. Locate `src/app/app.module.ts`. Change `axios.defaults.baseURL=''` to your own server path.
+ 4. Install `node.js`
+ 5. Run `npm install -g ionic`
+ 6. Locate project folder run `npm i`
+ 7. Web Debugging. Locate project folder and run `ionic serve --browser google chrome`
+ 
+ 
 ## Demo
 ### Sign up
 ![img](https://github.com/jimjimliu/Bill-Ionic-/blob/master/demo/1.gif)
